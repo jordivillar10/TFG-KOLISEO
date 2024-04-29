@@ -1,0 +1,11 @@
+
+#navbarNavDropdown{
+  justify-content: center;
+}
+.navbar {
+  background-color: rgb(181, 181, 181);
+}
+.dropdown-menu {
+  width: 200px;
+}
+

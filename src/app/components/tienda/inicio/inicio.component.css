@@ -1,0 +1,11 @@
+.navbar-container{
+    z-index: 6;
+}
+
+.buscador-container {
+    position:sticky;
+    top: 0px;
+    z-index: 5;
+    /* Estilos del contenedor del buscador */
+    /* Puedes establecer aquí márgenes o cualquier otro estilo necesario */
+}

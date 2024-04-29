@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg" [ngClass]="{'expanded': navbarExpanded}">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarColor04">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Todos</a>
+        </li>
+        <li class="nav-item dropdown" (mouseenter)="showDropdown('dropdown1')" (mouseleave)="hideDropdown('dropdown1')">
+          <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Suplementos</a>
+          <div class="dropdown-menu" [ngClass]="{'show': dropdownVisible['dropdown1']}" (mouseenter)="cancelHide()" (mouseleave)="hideDropdown('dropdown1')">
+            <a class="dropdown-item" href="#">Proteínas</a>
+            <a class="dropdown-item" href="#">Vitaminas</a>
+            <a class="dropdown-item" href="#">Aminoácidos</a>
+            <a class="dropdown-item" href="#">Creatina</a>
+            <a class="dropdown-item" href="#">Pre entrenamiento</a>
+          </div>
+        </li>          
+        <li class="nav-item dropdown" (mouseenter)="showDropdown('dropdown2')" (mouseleave)="hideDropdown('dropdown2')">
+          <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Ropa</a>
+          <div class="dropdown-menu" [ngClass]="{'show': dropdownVisible['dropdown2']}" (mouseenter)="cancelHide()" (mouseleave)="hideDropdown('dropdown2')">
+            <a class="dropdown-item" href="#">Mis compras</a>
+            <a class="dropdown-item" href="#">Mi cuenta</a>
+            <a class="dropdown-item" href="#">Log Out</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown" (mouseenter)="showDropdown('dropdown3')" (mouseleave)="hideDropdown('dropdown3')">
+          <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Material</a>
+          <div class="dropdown-menu" [ngClass]="{'show': dropdownVisible['dropdown3']}" (mouseenter)="cancelHide()" (mouseleave)="hideDropdown('dropdown3')">
+            <a class="dropdown-item" href="#">Mis compras</a>
+            <a class="dropdown-item" href="#">Mi cuenta</a>
+            <a class="dropdown-item" href="#">Log Out</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

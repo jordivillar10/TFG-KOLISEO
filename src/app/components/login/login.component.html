@@ -1,0 +1,21 @@
+<div class="wrapper">
+    <div *ngIf="!loading" class="container rounded">
+        <div class="contLogin rounded-circle mb-5 mt-5">
+            <img class="logoLogin mt-2 me-2" src="../../../assets/img/loginicon.png" alt="login">
+        </div>
+        <div class="form-floating mb-4 ">
+            <input type="text" [(ngModel)]="email" class="form-control" placeholder="Ingrese correo">
+            <label>Email</label>
+        </div>
+        <div class="form-floating mb-4">
+            <input type="password" [(ngModel)]="password" class="form-control" placeholder="Ingrese contraseña">
+            <label>Contraseña</label>
+        </div>
+        <a  class="botonInicio mt-4">
+            <img src="../../../assets/img/accessIcon.png" (click)="login()" alt="Iniciar sesión">
+        </a>      
+        <p class="mt-3">¿No tienes cuenta? <a routerLink = "/signIn" >Registrarse</a>
+        </p>  
+    </div>
+    <app-spinner *ngIf="loading"></app-spinner>
+</div>

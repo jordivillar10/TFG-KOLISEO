@@ -1,0 +1,54 @@
+.navbar {
+    z-index: 1;
+}
+.logoNavBar {
+    width: 150px; 
+    height: 80px; 
+}
+.logo-link{
+    display: inline-block;
+    width: 180px; 
+    height: auto; 
+}
+
+.nav-item {
+    font-size: 15px;
+}
+.nav-link:hover{
+    color: rgb(82, 249, 87);
+   
+}
+.nav-link{
+    color: white;
+    margin-right: 20px;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+}
+nav, .dropdown-menu{
+    background-color: rgb(0, 0, 0);
+}
+
+@media (min-width: 992px) {
+    .navbar-nav .nav-link {
+      transition: transform 0.3s ease;
+    }
+  
+    .navbar-nav .nav-link:hover {
+      transform: scale(1.2);
+    }
+}
+
+
+.dropdown-menu {
+    width: 200px;
+}
+.menu{
+    width: 10px;
+}
+svg{
+    color: rgb(82, 249, 87);
+}
+
+  
