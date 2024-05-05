@@ -38,7 +38,7 @@
               </div>
               <div class="offcanvas-body">
                 <ul>
-                  <li *ngFor="let producto of productosCarrito">
+                  <li *ngFor="let producto of carrito">
                     {{ producto.id }}
                     {{ producto.name }}
                     {{ producto.price }}
@@ -47,7 +47,7 @@
                   </li>
                 </ul>
                 <div class="text-end">
-                  <button type="button" class="btn btn-outline-dark" (click)="offcanvas.close('Close click')">Cerrar</button>
+                  <button class="btn btn-danger" (click)="vaciarCarrito()">Vacíar Carrito</button>
                 </div>
               </div>
             </ng-template>            

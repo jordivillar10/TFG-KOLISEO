@@ -21,9 +21,10 @@ const validateToken = (req, res, next) => {
         }
     }
     else {
-        res.status(401).json({
-            msg: "Acceso Denegado"
-        });
+        // res.status(401).json({
+        //     msg: "Acceso Denegado"
+        // })
+        next();
     }
 };
 exports.default = validateToken;
