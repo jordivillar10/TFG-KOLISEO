@@ -15,7 +15,7 @@ export const newUser = async (req: Request, res: Response) => {
             msg: `Ya existe una cuenta con el correo ${email}`
         })
     }
-
+    //securizamos la passwd
     const hashedPassword = await bcrypt.hash(password, 10);
     
     try {

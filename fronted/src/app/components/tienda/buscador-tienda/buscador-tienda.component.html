@@ -34,18 +34,26 @@
             <ng-template #content let-offcanvas>
               <div class="offcanvas-header">
                 <h4 class="offcanvas-title">Tu carrito</h4>
-                <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+                <button type="button" class="btn-close" aria-label="Close" (click)="toggleCarrito(); offcanvas.dismiss('Cross click')"></button>
               </div>
               <div class="offcanvas-body">
-                <p>Tus productos&hellip;</p>
+                <ul>
+                  <li *ngFor="let producto of productosCarrito">
+                    {{ producto.id }}
+                    {{ producto.name }}
+                    {{ producto.price }}
+                    {{ producto.cantidad }}
+                    {{ producto.price * producto.cantidad }}
+                  </li>
+                </ul>
                 <div class="text-end">
                   <button type="button" class="btn btn-outline-dark" (click)="offcanvas.close('Close click')">Cerrar</button>
                 </div>
               </div>
-            </ng-template>
-            
+            </ng-template>            
             <a class="nav-link  btn-outline-success mb-2 me-2" (click)="openEnd(content)" >
                 <img class="logoCarrito m-auto" src="../../../../assets/img/carritoLogo.png" alt="">
+                <span class="contador text-light  rounded-circle bg-danger">{{ contadorCarrito }}</span>
             </a>
           </li>
         </ul>

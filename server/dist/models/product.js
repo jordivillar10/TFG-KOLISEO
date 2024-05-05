@@ -16,7 +16,7 @@ exports.Product = connection_1.default.define('product', {
         type: sequelize_1.DataTypes.STRING
     },
     price: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.FLOAT
     },
     description: {
         type: sequelize_1.DataTypes.STRING

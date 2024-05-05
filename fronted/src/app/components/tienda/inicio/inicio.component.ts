@@ -5,6 +5,7 @@ import { NavbarTiendaComponent } from '../navbar-tienda/navbar-tienda.component'
 import { DashboardTiendaComponent } from '../dashboard-tienda/dashboard-tienda.component';
 import { NgIf } from '@angular/common';
 import { FooterTiendaComponent } from '../footer-tienda/footer-tienda.component';
+import { ProductService } from '../../../services/product.service';
 
 @Component({
   selector: 'app-inicio',
@@ -14,6 +15,7 @@ import { FooterTiendaComponent } from '../footer-tienda/footer-tienda.component'
   styleUrl: './inicio.component.css'
 })
 export class InicioComponent  {
+
   // showBuscador: boolean = false;
   // lastScrollTop = 0;
   

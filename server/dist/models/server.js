@@ -15,9 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const product_1 = __importDefault(require("../routes/product"));
 const user_1 = __importDefault(require("../routes/user"));
+const exercise_1 = __importDefault(require("../routes/exercise"));
 const product_2 = require("./product");
 const user_2 = require("./user");
 const cors_1 = __importDefault(require("cors"));
+const excercise_1 = require("./excercise");
+const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
+const swaggerConfig_1 = __importDefault(require("../swaggerConfig")); // Ruta al archivo de configuración de Swagger
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -35,8 +39,10 @@ class Server {
     routes() {
         this.app.use('/api/products', product_1.default);
         this.app.use('/api/users', user_1.default);
+        this.app.use('/api/exercises', exercise_1.default);
     }
     midlewares() {
+        this.app.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerConfig_1.default));
         //Parseo body   
         this.app.use(express_1.default.json());
         //Cors
@@ -47,6 +53,7 @@ class Server {
             try {
                 yield product_2.Product.sync();
                 yield user_2.User.sync();
+                yield excercise_1.Exercise.sync();
             }
             catch (error) {
                 console.error('No se pudo conectar a la base de datos:', error);

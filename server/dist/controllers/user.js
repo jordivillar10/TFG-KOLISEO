@@ -25,6 +25,7 @@ const newUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             msg: `Ya existe una cuenta con el correo ${email}`
         });
     }
+    //securizamos la passwd
     const hashedPassword = yield bcrypt_1.default.hash(password, 10);
     try {
         //guardamos usuario en la base de datos

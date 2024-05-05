@@ -13,6 +13,12 @@ import { InicioComponent } from "./components/tienda/inicio/inicio.component";
 import { SuplementosComponent } from "./components/tienda/suplementos/suplementos.component";
 import { AccesoriosComponent } from "./components/tienda/accesorios/accesorios.component";
 import { HttpClientModule } from "@angular/common/http";
+import { RegistrosComponent } from "./components/registros/registros.component";
+import { RegistrarComponent } from "./components/registros/registrar/registrar.component";
+import { CrearComponent } from "./components/registros/crear/crear.component";
+import { HistorialComponent } from "./components/registros/historial/historial.component";
+import { EstadisticasComponent } from "./components/registros/estadisticas/estadisticas.component";
+import { ContactanosComponent } from "./components/contactanos/contactanos.component";
 
 
 const routes: Routes = [
@@ -21,6 +27,10 @@ const routes: Routes = [
     { path: 'signIn', component: SignInComponent },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'tienda', component: TiendaComponent },
+    { path: 'registros', component: RegistrosComponent},
+    { path: 'registrarTrain', component: RegistrarComponent},
+    { path: 'estadisticas', component: EstadisticasComponent},
+    { path: 'historial', component: HistorialComponent},
     { path: 'inicio', component: InicioComponent },
     { path: 'suplementos', component: SuplementosComponent },
     { path: 'accesorios', component: AccesoriosComponent },
