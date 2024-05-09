@@ -57,7 +57,7 @@ export class DashboardTiendaComponent {
       id: product.id,
       name: product.name,
       price: product.price,
-      cantidad: 1 // Puedes establecer la cantidad inicial aquí
+      cantidad: 1 
     };
     this.carritoService.agregarAlCarrito(productoParaCarrito);
     

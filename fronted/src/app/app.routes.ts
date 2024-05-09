@@ -19,6 +19,8 @@ import { CrearComponent } from "./components/registros/crear/crear.component";
 import { HistorialComponent } from "./components/registros/historial/historial.component";
 import { EstadisticasComponent } from "./components/registros/estadisticas/estadisticas.component";
 import { ContactanosComponent } from "./components/contactanos/contactanos.component";
+import { CarritoComponent } from "./components/tienda/carrito/carrito.component";
+import { CompraComponent } from "./components/tienda/compra/compra.component";
 
 
 const routes: Routes = [
@@ -27,11 +29,13 @@ const routes: Routes = [
     { path: 'signIn', component: SignInComponent },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'tienda', component: TiendaComponent },
+    { path: 'carrito', component: CarritoComponent },
+    { path: 'compra', component: CompraComponent },
     { path: 'registros', component: RegistrosComponent},
     { path: 'registrarTrain', component: RegistrarComponent},
     { path: 'estadisticas', component: EstadisticasComponent},
     { path: 'historial', component: HistorialComponent},
-    { path: 'inicio', component: InicioComponent },
+    { path: 'inicioTienda', component: InicioComponent },
     { path: 'suplementos', component: SuplementosComponent },
     { path: 'accesorios', component: AccesoriosComponent },
     {path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
