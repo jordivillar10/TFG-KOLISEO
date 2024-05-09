@@ -1,15 +1,15 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { productoCarrito } from '../../../interfaces/productoCarrito';
 import { CarritoService } from '../../../services/carrito.service';
 import { FormsModule } from '@angular/forms'; 
-import { NgModel, NgModelGroup } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
+import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-compra',
   standalone: true,
-  imports: [NgIf, FormsModule, NgFor],
+  imports: [NgIf, FormsModule, NgFor, NgbDatepickerModule],
   templateUrl: './compra.component.html',
   styleUrl: './compra.component.css'
 })
@@ -17,12 +17,27 @@ export class CompraComponent {
   carrito: productoCarrito[] = [];
   private carritoSubscription: Subscription ;
   
-  constructor(private carritoService: CarritoService) {
+  closeResult = '';
+  constructor(private carritoService: CarritoService, private modalService: NgbModal) {
     this.carritoSubscription = this.carritoService.carrito$.subscribe(carrito => {
       this.carrito = carrito;
     });
   }
+  
+  openVerticallyCentered(content: TemplateRef<any>) {
+		this.modalService.open(content, { centered: true });
+	}
 
+	private getDismissReason(reason: any): string {
+		switch (reason) {
+			case ModalDismissReasons.ESC:
+				return 'by pressing ESC';
+			case ModalDismissReasons.BACKDROP_CLICK:
+				return 'by clicking on a backdrop';
+			default:
+				return `with: ${reason}`;
+		}
+	}
   selectedMethod: string = '';
     paypalForm = { username: '', password: '' };
     creditCardForm = { cardName: '', cardNumber: '', expiryDate: '', cvv: '' };

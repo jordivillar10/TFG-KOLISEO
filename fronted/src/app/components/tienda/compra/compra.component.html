@@ -1,5 +1,5 @@
 <body>
-    <div class="container">
+    <div class="container container1">
         <div class="row ">
             <div class="col-7 bg-light rounded mt-2 mb-4 mx-5">
                 <p class="mt-3 fw-bold">Dirección de envío</p>
@@ -7,15 +7,14 @@
                     <form class="row g-3">
                         <div class="col-md-6">
                           <label for="inputEmail4" class="form-label">Nombre</label>
-                          <input type="email" class="form-control" id="inputEmail4" placeholder="Introduzca su nombre">
+                          <input type="text" class="form-control" id="inputEmail4" placeholder="Introduzca su nombre">
                         </div>
                         <div class="col-md-6">
                           <label for="inputPassword4" class="form-label">Apellidos</label>
-                          <input type="password" class="form-control" id="inputPassword4" placeholder="Introduzca sus apellidos">
+                          <input type="text" class="form-control" id="inputPassword4" placeholder="Introduzca sus apellidos">
                         </div>
                         <div class="col-12">
                           <label for="inputAddress" class="form-label">Dirección</label>
-    
                           <input type="text" class="form-control" id="inputAddress" placeholder="Dirección">
                         </div>
                         <div class="col-12">
@@ -127,7 +126,37 @@
                     <p class="fw-bold">Total: {{ getTotalPrice() }}€</p>
                 </div>
                 <div class="text-center mt-4" >
-                    <button class="text-light">Comprar</button>
+                    <ng-template #content let-modal>
+                        <div class="modal-header">
+                            <h4 class="modal-title text-center" id="modal-basic-title">Procesando la compra</h4>
+                            <button type="button " class="cerrar btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container container2">
+                            <div class="left-side">
+                                <div class="card card2">
+                                <div class="card-line"></div>
+                                <div class="buttons"></div>
+                                </div>
+                                <div class="post">
+                                <div class="post-line"></div>
+                                <div class="screen">
+                                    <div class="dollar">$</div>
+                                </div>
+                                <div class="numbers"></div>
+                                <div class="numbers-line2"></div>
+                                </div>
+                            </div>
+                            
+                            </div>
+                        </div>
+                        <!-- <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+                        </div> -->
+                    </ng-template>
+                    <button class="botonComprar text-light" (click)="openVerticallyCentered(content)">Comprar</button>
+                    <hr />
+                    <pre>{{ closeResult }}</pre>
                 </div>
                 </div>
         </div>

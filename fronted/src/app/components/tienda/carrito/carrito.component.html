@@ -6,7 +6,6 @@
                 Id
             </td>
             <td>
-
             </td>
             <td>
                 Producto
@@ -28,9 +27,9 @@
         </td>
         <td>  {{ producto.name }}</td>
         <td>
-            <button class="mt-3" (click)="decrementarCantidad(producto)">-</button>
+            <button class="mt-3" (click)="modificarCantidad(producto, producto.cantidad - 1)">-</button>
             {{ producto.cantidad }}
-        <button class=""  (click)="incrementarCantidad(producto)">+</button>
+        <button class=""  (click)="modificarCantidad(producto, producto.cantidad + 1)">+</button>
         </td>
         <td>  {{ producto.price * producto.cantidad }}€</td>
         <td>

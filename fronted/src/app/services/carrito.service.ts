@@ -61,4 +61,15 @@ export class CarritoService {
     // Actualizar el almacenamiento local
     localStorage.setItem(this.claveLS, JSON.stringify(nuevoCarrito));
   }
+
+  modificarUds(articulo: productoCarrito) {
+    const carritoActual = this.carritoSubject.getValue(); // Obtener el carrito actual
+    const index = carritoActual.findIndex(item => item.id === articulo.id); // Encontrar el índice del artículo en el carrito
+
+    if (index !== -1) {
+      carritoActual[index].cantidad = articulo.cantidad; // Actualizar la cantidad del artículo
+      this.carritoSubject.next(carritoActual); // Emitir el nuevo carrito
+      localStorage.setItem(this.claveLS, JSON.stringify(carritoActual)); // Actualizar el carrito en el almacenamiento local
+    }
+  }
 }
