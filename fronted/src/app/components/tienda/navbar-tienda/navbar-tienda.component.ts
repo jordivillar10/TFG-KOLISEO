@@ -1,6 +1,7 @@
 // Importaciones de módulos y clases necesarios
 import { NgClass } from '@angular/common'; // Importa la directiva NgClass desde el módulo @angular/common
-import { Component, ElementRef, ViewChild } from '@angular/core'; // Importa las clases Component, ElementRef y ViewChild desde el módulo @angular/core
+import { Component } from '@angular/core'; // Importa las clases Component, ElementRef y ViewChild desde el módulo @angular/core
+import { FiltradoService } from '../../../services/filtrado.service';
 
 // Decorador @Component que define metadatos para el componente
 @Component({
@@ -13,6 +14,16 @@ import { Component, ElementRef, ViewChild } from '@angular/core'; // Importa las
 export class NavbarTiendaComponent {
   navbarExpanded: boolean = false; // Propiedad que almacena el estado de expansión del navbar
   dropdownVisible: { [key: string]: boolean } = {}; // Objeto que rastrea qué menús desplegables están visibles
+
+  constructor(private filtradoService: FiltradoService) { }
+
+  seleccionarCategoria(categoriaId: number) {
+    this.filtradoService.actualizarCategoriaSeleccionada(categoriaId);
+  }
+
+  mostrarTodosLosProductos() {
+    this.filtradoService.mostrarTodosLosProductos();
+  }
 
   // Método que muestra un menú desplegable específico
   showDropdown(dropdownId: string) {
@@ -30,4 +41,7 @@ export class NavbarTiendaComponent {
   }
 
   private hideTimeout: any; // Propiedad privada que almacena el identificador del temporizador utilizado para ocultar un menú desplegable
+
+
+
 }

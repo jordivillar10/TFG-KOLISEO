@@ -1,3 +1,4 @@
+import { FiltradoService } from './../../../services/filtrado.service';
 import { productoCarrito } from './../../../interfaces/productoCarrito';
 import { NgFor } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
@@ -9,6 +10,7 @@ import { register } from 'swiper/element/bundle';
 import { ProductService } from '../../../services/product.service';
 import { Product } from '../../../interfaces/product';
 import { CarritoService } from '../../../services/carrito.service';
+import { Subscription } from 'rxjs';
 
 // register Swiper custom elements
 register();
@@ -31,23 +33,56 @@ export class DashboardTiendaComponent {
   "/assets/img/slider4.png",
  ];
  productos: Product[] = [];
+ productosOriginales: Product[] = [];
+
+ private categoriaSubscription: Subscription;
+ private mostrarTodosLosProductosSubscription: Subscription;
 
  constructor(private _productService: ProductService,
-  private carritoService: CarritoService
- ) {}
+  private carritoService: CarritoService,
+  private filtradoService: FiltradoService
+ ) {
+  this.categoriaSubscription = this.filtradoService.categoriaSeleccionada$.subscribe(categoriaId => {
+    if (categoriaId !== null) {
+      this.filtrarProductos(categoriaId);
+    }
+  });
+  this.mostrarTodosLosProductosSubscription = this.filtradoService.mostrarTodosLosProductosSubject.subscribe(() => {
+    this.mostrarTodosLosProductos();
+  });
+ }
 
  ngOnInit() {
     this.getProducts();
     console.log("probando eventos ciclo vida");
   }
   
+  ngOnDestroy() {
+    this.categoriaSubscription.unsubscribe();
+    this.mostrarTodosLosProductosSubscription.unsubscribe();
+  }
+
+  filtrarProductos(categoriaId: number) {
+    
+    console.log('Filtrando productos para la categoría:', categoriaId);
+
+    this.productos = this.productosOriginales.filter(producto => producto.category_id === categoriaId);
+    console.log('Productos filtrados:', this.productos);
+
+  }
+
+  mostrarTodosLosProductos() {
+    this.productos = this.productosOriginales;
+  }
+
   getProducts() {
     this._productService
     .getProducts()
     .subscribe(data => { 
       this.productos = data;
+      this.productosOriginales = data;
      //  [0].name
-      console.log(this.productos);
+      // console.log(this.productos);
       
      //  console.log(typeof(this.productosPrueba[0].id)); 
     });
@@ -63,6 +98,7 @@ export class DashboardTiendaComponent {
     
   }
 
+  
   
   // addToCart(product: Product) {
   //   // console.log(product);
