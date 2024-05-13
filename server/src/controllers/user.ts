@@ -43,28 +43,53 @@ export const loginUser = async (req: Request, res: Response) => {
 
     const { email, password } = req.body;
     
-    //Validamos si el usuario existe en la db
-    const user: any = await User.findOne({where: { email: email } })
+    try {
+        //Validamos si el usuario existe en la db
+        const user: any = await User.findOne({where: { email: email } })
 
-    if(!user){
-        return res.status(400).json({
-            msg: `No existe un usuario con el correo ${email}`
-        })
+        if(!user){
+            return res.status(400).json({
+                msg: `No existe un usuario con el correo ${email}`
+            })
+        }
+
+        //Validamos password
+        const passwordValid = await bcrypt.compare(password, user.password)
+        if(!passwordValid) {
+            return res.status(400).json({
+                msg: `Password Incorrecta`
+            })
+        }
+        
+
+        //Generamos token
+        const token = jwt.sign({
+            email: email
+        }, process.env.SECRET_KEY || 'pepito123');
+
+        res.json({token, user});
+    } catch (error: any) {
+        res.status(500).json({
+            msg: 'Error interno del servidor',
+            error: error.message
+        });
     }
-
-    //Validamos password
-    const passwordValid = await bcrypt.compare(password, user.password)
-    if(!passwordValid) {
-        return res.status(400).json({
-            msg: `Password Incorrecta`
-        })
-    }
-    
-
-    //Generamos token
-    const token = jwt.sign({
-        email: email
-    }, process.env.SECRET_KEY || 'pepito123');
-
-    res.json({token});
 }
+
+export const getUserInfo = async (req: Request, res: Response) => {
+    try {
+        const userId = req.userId; // Suponiendo que `userId` está disponible en la solicitud después de pasar por el middleware de autenticación
+
+        const user: any = await User.findByPk(userId); // Obtener el usuario por su ID
+
+        if (!user) {
+            return res.status(404).json({ msg: 'Usuario no encontrado' });
+        }
+
+        // Aquí puedes devolver toda la información del usuario o seleccionar campos específicos según tus necesidades
+        res.json(user);
+    } catch (error: any) {
+        res.status(500).json({ msg: 'Error interno del servidor', error: error.message });
+    }
+};
+

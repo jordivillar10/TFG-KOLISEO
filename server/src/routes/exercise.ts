@@ -4,6 +4,6 @@ import validateToken from "./validate-token";
 
 const router = Router();
 
-router.get('/',validateToken, getExercises);
+router.get('/',/*validateToken*/ getExercises);
 
 export default router;

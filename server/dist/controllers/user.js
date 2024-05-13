@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginUser = exports.newUser = void 0;
+exports.getUserInfo = exports.loginUser = exports.newUser = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const user_1 = require("../models/user");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -49,24 +49,47 @@ const newUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.newUser = newUser;
 const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
-    //Validamos si el usuario existe en la db
-    const user = yield user_1.User.findOne({ where: { email: email } });
-    if (!user) {
-        return res.status(400).json({
-            msg: `No existe un usuario con el correo ${email}`
+    try {
+        //Validamos si el usuario existe en la db
+        const user = yield user_1.User.findOne({ where: { email: email } });
+        if (!user) {
+            return res.status(400).json({
+                msg: `No existe un usuario con el correo ${email}`
+            });
+        }
+        //Validamos password
+        const passwordValid = yield bcrypt_1.default.compare(password, user.password);
+        if (!passwordValid) {
+            return res.status(400).json({
+                msg: `Password Incorrecta`
+            });
+        }
+        //Generamos token
+        const token = jsonwebtoken_1.default.sign({
+            email: email
+        }, process.env.SECRET_KEY || 'pepito123');
+        res.json({ token, user });
+    }
+    catch (error) {
+        res.status(500).json({
+            msg: 'Error interno del servidor',
+            error: error.message
         });
     }
-    //Validamos password
-    const passwordValid = yield bcrypt_1.default.compare(password, user.password);
-    if (!passwordValid) {
-        return res.status(400).json({
-            msg: `Password Incorrecta`
-        });
-    }
-    //Generamos token
-    const token = jsonwebtoken_1.default.sign({
-        email: email
-    }, process.env.SECRET_KEY || 'pepito123');
-    res.json({ token });
 });
 exports.loginUser = loginUser;
+const getUserInfo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const userId = req.userId; // Suponiendo que `userId` está disponible en la solicitud después de pasar por el middleware de autenticación
+        const user = yield user_1.User.findByPk(userId); // Obtener el usuario por su ID
+        if (!user) {
+            return res.status(404).json({ msg: 'Usuario no encontrado' });
+        }
+        // Aquí puedes devolver toda la información del usuario o seleccionar campos específicos según tus necesidades
+        res.json(user);
+    }
+    catch (error) {
+        res.status(500).json({ msg: 'Error interno del servidor', error: error.message });
+    }
+});
+exports.getUserInfo = getUserInfo;

@@ -23,4 +23,8 @@ export class UsersService {
   login(user: User): Observable<string> {
     return this.http.post<string>(`${this.myAppUri}${this.myApiUri}/login`, user);
   }
+
+  getUserInfo(): Observable<any> {
+    return this.http.get<any>(`${this.myAppUri}${this.myApiUri}`)
+  }
 }
