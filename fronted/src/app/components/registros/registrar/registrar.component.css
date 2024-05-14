@@ -25,7 +25,7 @@ body{
   
   .input:focus,
   .input:not(:invalid) {
-    width: 740px;
+    width: 40vw;
     cursor: text;
     box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 1.5px 1.5px 3px #0e0e0e, inset -1.5px -1.5px 3px #5f5e5e;
   }

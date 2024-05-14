@@ -1,26 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter, NgModule } from '@angular/core';
 import { HistorialComponent } from '../historial/historial.component';
 import { RouterLink } from '@angular/router';
 import { ExerciseService } from '../../../services/exercise.service';
 import { NgFor, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 
 
 @Component({
   selector: 'app-registrar',
   standalone: true,
-  imports: [HistorialComponent, RouterLink, NgIf, NgFor],
+  imports: [HistorialComponent, RouterLink, NgIf, NgFor, FormsModule],
   templateUrl: './registrar.component.html',
   styleUrl: './registrar.component.css'
 })
 export class RegistrarComponent {
-  exercisesPrueba: any[] = [];
 
+  exercises: any[] = [];
+  exercisesFiltrados: any[] = [];
 
   constructor(
     private _exerciseService: ExerciseService,
     private http: HttpClient
   ) {}
+
+  @Output() cambioBusqueda = new EventEmitter<string>();
+  onSearchInput(event: any){
+    const terminoBusqueda = event.target.value;
+    this.cambioBusqueda.emit(terminoBusqueda)
+  }
 
   ngOnInit() {
     console.log("probando eventos ciclo vida");
@@ -29,16 +38,17 @@ export class RegistrarComponent {
       .getExercises()
       .subscribe(data => { 
         
-        this.exercisesPrueba = data;
-        console.log("exercisesPrueba->", this.exercisesPrueba);
+        this.exercises = data;
+        this.exercisesFiltrados = data;
+        console.log("exercises->", this.exercises);
        //  console.log(typeof(this.productosPrueba[0].id)); 
       });
  
   }
 
   miFuncion(): void {
-    // Ejemplo: Devolver true si exercisesPrueba no está vacío
-    this.exercisesPrueba.forEach((element: any) => {
+    // Ejemplo: Devolver true si exercises no está vacío
+    this.exercises.forEach((element: any) => {
       element.seleccionado = !element.seleccionado;
     });
   }
@@ -86,6 +96,21 @@ export class RegistrarComponent {
         console.error('Error al guardar el entrenamiento:', error);
         // Aquí podrías mostrar un mensaje de error al usuario
       });
+  }
+  terminoBusqueda: string = '';
+  filtrarProductos() {
+    const terminoNormalizado = this.normalizarTexto(this.terminoBusqueda);
+  
+    if (terminoNormalizado.trim() === '') {
+      this.exercisesFiltrados = this.exercises;
+    } else {
+      this.exercisesFiltrados = this.exercises.filter(exercises =>
+        this.normalizarTexto(exercises.name).includes(terminoNormalizado)
+      );
+    }
+  }
+  normalizarTexto(texto: string): string {
+    return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   }
 
 }

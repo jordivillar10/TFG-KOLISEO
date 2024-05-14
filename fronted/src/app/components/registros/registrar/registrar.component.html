@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="container2 mt-5 ">
-                        <input type="text" name="text" class="input" required="" placeholder="Buscar ejercicio...">
+                        <input type="text" [(ngModel)]="terminoBusqueda" (input)="filtrarProductos()" name="text" class="input" required="" placeholder="Buscar ejercicio...">
                         <div class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
                                 <title>Search</title>
@@ -66,7 +66,7 @@
                                 <span title="Acceder a la lista (Temas)">Ver</span>
                             </div>
                         </div> -->
-                        <div *ngFor="let ejercicio of exercisesPrueba" class="card2 mt-3" (click)="mostrarEjercicio(ejercicio)">
+                        <div *ngFor="let ejercicio of exercisesFiltrados" class="card2 mt-3" (click)="mostrarEjercicio(ejercicio)">
                             <div class="bar"></div>
                             <div class="card_form">
                                 <img class="imgbanca" src="../../../../assets/img/bench-press-800.png" alt="">
@@ -160,7 +160,7 @@
                     </div>
                     <h1 class="text-light mt-3">Ejercicios seleccionados</h1>
                     <div class="scroll-container-seleccionados ">
-                        <div class="row text-light " *ngFor="let ejercicio of exercisesPrueba">
+                        <div class="row text-light " *ngFor="let ejercicio of exercises">
                             <div *ngIf=ejercicio.seleccionado>
                                 {{ ejercicio.name }}
                             </div>

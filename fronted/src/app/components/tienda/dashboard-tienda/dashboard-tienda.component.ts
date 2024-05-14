@@ -98,7 +98,15 @@ export class DashboardTiendaComponent {
     
   }
 
-  
+  onTerminoBusquedaChanged(terminoBusqueda: string) {
+    if (terminoBusqueda.trim() === '') {
+      this.productos = this.productosOriginales;
+    } else {
+      this.productos = this.productosOriginales.filter(productosOriginales =>
+        productosOriginales.name.toLowerCase().includes(terminoBusqueda.toLowerCase())
+      );
+    }
+  }
   
   // addToCart(product: Product) {
   //   // console.log(product);
