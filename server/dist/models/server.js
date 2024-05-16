@@ -47,6 +47,8 @@ class Server {
         this.app.use(express_1.default.json());
         //Cors
         this.app.use((0, cors_1.default)());
+        //middleware de autenticación
+        // this.app.use(this.authMiddleware);
     }
     dbConnect() {
         return __awaiter(this, void 0, void 0, function* () {

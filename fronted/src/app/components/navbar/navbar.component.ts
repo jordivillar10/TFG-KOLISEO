@@ -2,6 +2,7 @@ import { Component, } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from "@angular/router";
 import { ContactanosComponent } from '../contactanos/contactanos.component';
+import { UsersService } from '../../services/users.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -11,10 +12,13 @@ import { ContactanosComponent } from '../contactanos/contactanos.component';
 })
 export class NavbarComponent  {
   
-constructor(private router: Router) {}
+constructor(private router: Router, private userService: UsersService) {}
 
   logOut() {
+    this.userService.clearUserData(); // Limpia los datos del usuario
+
     localStorage.removeItem('token');
+    localStorage.removeItem('userData');
     this.router.navigate(['/login']);
   }
 

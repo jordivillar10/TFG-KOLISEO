@@ -8,6 +8,5 @@ const user_1 = require("../controllers/user");
 const validate_token_1 = __importDefault(require("./validate-token"));
 const router = (0, express_1.Router)();
 router.post('/', user_1.newUser);
-router.post('/login', user_1.loginUser);
-router.get('/', validate_token_1.default, user_1.getUserInfo);
+router.post('/login', validate_token_1.default, user_1.loginUser);
 exports.default = router;

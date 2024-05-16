@@ -11,7 +11,8 @@ const validateToken = (req, res, next) => {
         //tiene token 
         try {
             const bearerToken = headerToken.slice(7);
-            jsonwebtoken_1.default.verify(bearerToken, process.env.SECRET_KEY || 'pepito123');
+            const decodedToken = jsonwebtoken_1.default.verify(bearerToken, process.env.SECRET_KEY || 'pepito123');
+            // req.user = { id: decodedToken.id };
             next();
         }
         catch (error) {
