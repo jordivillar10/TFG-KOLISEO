@@ -92,4 +92,8 @@ export class CompraComponent {
       }
       return total;
     }
+
+    realizarCompra() {
+      
+    }
 }
