@@ -8,7 +8,7 @@ import cors from "cors";
 import { Exercise } from './excercise';
 import swaggerUi from 'swagger-ui-express';
 import specs from '../swaggerConfig'; // Ruta al archivo de configuración de Swagger
-
+import  routesPayment  from "../routes/payments";
 
 class Server {
     private app: Application;
@@ -34,6 +34,7 @@ class Server {
         this.app.use('/api/products', routesProduct);
         this.app.use('/api/users', routesUser);
         this.app.use('/api/exercises', routesExercise);
+        this.app.use('/api/payment', routesPayment);
     }
 
     midlewares() {

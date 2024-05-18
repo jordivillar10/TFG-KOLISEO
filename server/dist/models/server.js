@@ -22,6 +22,7 @@ const cors_1 = __importDefault(require("cors"));
 const excercise_1 = require("./excercise");
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swaggerConfig_1 = __importDefault(require("../swaggerConfig")); // Ruta al archivo de configuración de Swagger
+const payments_1 = __importDefault(require("../routes/payments"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -40,6 +41,7 @@ class Server {
         this.app.use('/api/products', product_1.default);
         this.app.use('/api/users', user_1.default);
         this.app.use('/api/exercises', exercise_1.default);
+        this.app.use('/api/payment', payments_1.default);
     }
     midlewares() {
         this.app.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerConfig_1.default));

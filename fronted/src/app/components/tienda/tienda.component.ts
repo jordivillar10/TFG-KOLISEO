@@ -9,5 +9,5 @@ import { RouterLink } from "@angular/router";
   styleUrl: './tienda.component.css'
 })
 export class TiendaComponent {
-
+    
 }
