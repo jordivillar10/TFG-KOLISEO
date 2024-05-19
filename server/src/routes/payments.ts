@@ -1,8 +1,9 @@
 import { Router } from "express";
-// import { createSession } from "../controllers/payment";
+import { createSession } from "../controllers/payment";
+import validateToken from "./validate-token";
 const router = Router();
 
-// router.get("/create-checkout-session", createSession);
+router.post("/create-checkout-session", validateToken, createSession);
 router.get("/success", (req,res) => res.send("success"));
 router.get("/cancel", (req,res) => res.send("cancel"));
 

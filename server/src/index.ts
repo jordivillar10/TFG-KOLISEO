@@ -1,7 +1,10 @@
 import dotenv from 'dotenv';
-import Server from "./models/server";
-
-//Configuramos dotenv
+import Server from './models/server';
+// Configuramos dotenv
 dotenv.config();
 
-const server = new Server();
+export const server = new Server();
+
+
+// Exporta STRIPER_PRIVATE_KEY
+

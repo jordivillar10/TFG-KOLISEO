@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { FiltradoService } from './../../../services/filtrado.service';
 import { productoCarrito } from './../../../interfaces/productoCarrito';
 import { NgFor } from '@angular/common';
@@ -40,7 +41,8 @@ export class DashboardTiendaComponent {
 
  constructor(private _productService: ProductService,
   private carritoService: CarritoService,
-  private filtradoService: FiltradoService
+  private filtradoService: FiltradoService,
+  private toastr: ToastrService
  ) {
   this.categoriaSubscription = this.filtradoService.categoriaSeleccionada$.subscribe(categoriaId => {
     if (categoriaId !== null) {
@@ -54,7 +56,7 @@ export class DashboardTiendaComponent {
 
  ngOnInit() {
     this.getProducts();
-    console.log("probando eventos ciclo vida");
+    // console.log("probando eventos ciclo vida");
   }
   
   ngOnDestroy() {
@@ -64,10 +66,10 @@ export class DashboardTiendaComponent {
 
   filtrarProductos(categoriaId: number) {
     
-    console.log('Filtrando productos para la categoría:', categoriaId);
+    // console.log('Filtrando productos para la categoría:', categoriaId);
 
     this.productos = this.productosOriginales.filter(producto => producto.category_id === categoriaId);
-    console.log('Productos filtrados:', this.productos);
+    // console.log('Productos filtrados:', this.productos);
 
   }
 
@@ -95,7 +97,7 @@ export class DashboardTiendaComponent {
       cantidad: 1 
     };
     this.carritoService.agregarAlCarrito(productoParaCarrito);
-    
+    this.toastr.success('Producto añadido al carrito');
   }
 
   onTerminoBusquedaChanged(terminoBusqueda: string) {

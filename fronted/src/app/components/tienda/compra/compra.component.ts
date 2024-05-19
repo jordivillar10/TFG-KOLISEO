@@ -5,6 +5,7 @@ import { CarritoService } from '../../../services/carrito.service';
 import { FormsModule } from '@angular/forms'; 
 import { NgFor, NgIf } from '@angular/common';
 import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PaymentService } from '../../../services/payment.service';
 
 @Component({
   selector: 'app-compra',
@@ -18,12 +19,25 @@ export class CompraComponent {
   private carritoSubscription: Subscription ;
   
   closeResult = '';
-  constructor(private carritoService: CarritoService, private modalService: NgbModal) {
+  constructor(private carritoService: CarritoService, private modalService: NgbModal, private paymentService: PaymentService) {
     this.carritoSubscription = this.carritoService.carrito$.subscribe(carrito => {
       this.carrito = carrito;
     });
   }
   
+  iniciarPago() {
+    this.paymentService.createCheckoutSession().subscribe(
+      (response) => {
+        // Manejar la respuesta del backend, por ejemplo, redireccionar al usuario a la página de pago
+        console.log('Sesión de pago creada:', response);
+      },
+      (error) => {
+        // Manejar errores
+        console.error('Error al crear sesión de pago:', error);
+      }
+    );
+  }
+
   openVerticallyCentered(content: TemplateRef<any>) {
 		this.modalService.open(content, { centered: true });
 	}
@@ -93,7 +107,5 @@ export class CompraComponent {
       return total;
     }
 
-    realizarCompra() {
-      
-    }
+    
 }

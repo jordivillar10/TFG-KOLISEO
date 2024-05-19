@@ -1,10 +1,9 @@
 import {Request, Response} from 'express';
-import validateService from '../routes/validate-token';
 import { User } from '../models/user';
-
 import { createUser } from "../repositories/userRepository";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+
 export const newUser = async (req: Request, res: Response) => {
     try {
     const { name, surname, email, password } = req.body;

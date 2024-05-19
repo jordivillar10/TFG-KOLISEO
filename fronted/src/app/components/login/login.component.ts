@@ -51,14 +51,22 @@ export class LoginComponent {
 
     this._userService.login(user).subscribe({
       next: (data: any) => {
-        console.log(data); // Verifica que data sea realmente el objeto que esperas
+        // console.log(data); // Verifica que data sea realmente el objeto que esperas
         // this.userData = data;
         // console.log("userdata->",this.userData);
-        this._userService.setUserData(data);
+        // this._userService.setUserData(data);
         // Accede a las propiedades del objeto directamente
         localStorage.setItem('token', data.token);
 
-        this.router.navigate(['/dashboard']);
+        // Redirigir al usuario a la URL almacenada o al dashboard
+        const redirectUrl = localStorage.getItem('redirectUrl');
+    
+        if (redirectUrl) {
+          localStorage.removeItem('redirectUrl');
+          this.router.navigateByUrl(redirectUrl);
+        } else {
+          this.router.navigate(['/dashboard']);
+        }
       },
       error: (e: HttpErrorResponse) => {
         this._errorService.msjError(e);

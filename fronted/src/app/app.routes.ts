@@ -18,9 +18,10 @@ import { RegistrarComponent } from "./components/registros/registrar/registrar.c
 import { CrearComponent } from "./components/registros/crear/crear.component";
 import { HistorialComponent } from "./components/registros/historial/historial.component";
 import { EstadisticasComponent } from "./components/registros/estadisticas/estadisticas.component";
-import { ContactanosComponent } from "./components/contactanos/contactanos.component";
 import { CarritoComponent } from "./components/tienda/carrito/carrito.component";
 import { CompraComponent } from "./components/tienda/compra/compra.component";
+import { AuthGuard } from "./auth.guard";
+import { DireccionEnvioComponent } from "./components/tienda/direccion-envio/direccion-envio.component";
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'tienda', component: TiendaComponent },
     { path: 'carrito', component: CarritoComponent },
+    { path: 'direccion-envio', component: DireccionEnvioComponent , canActivate: [AuthGuard]},
     { path: 'compra', component: CompraComponent },
     { path: 'registros', component: RegistrosComponent},
     { path: 'registrarTrain', component: RegistrarComponent},

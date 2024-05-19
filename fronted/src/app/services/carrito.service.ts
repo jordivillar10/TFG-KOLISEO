@@ -9,7 +9,7 @@ export class CarritoService {
   private carritoSubject = new BehaviorSubject<productoCarrito[]>([]);
   private contadorCarrito: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   carrito$ = this.carritoSubject.asObservable();
-  private claveLS = 'productosCarrito';
+  private claveLS = 'carrito';
 
   constructor() {
     const productosGuardados = localStorage.getItem(this.claveLS);
@@ -18,6 +18,10 @@ export class CarritoService {
       this.contadorCarrito.next(JSON.parse(productosGuardados).length);
     }
    }
+
+  getCarrito() {
+    return this.carritoSubject.asObservable();
+  }
 
   agregarAlCarrito(producto: productoCarrito) {
     const carritoActual = this.carritoSubject.getValue();
@@ -32,6 +36,12 @@ export class CarritoService {
     }
     this.carritoSubject.next([...carritoActual]); // Emite un nuevo array para asegurar la inmutabilidad
     localStorage.setItem(this.claveLS, JSON.stringify(carritoActual));
+  }
+
+  //metodo para mandar el carrito al back
+  obtenerCarritoLS(): productoCarrito[] {
+    const productosGuardados = localStorage.getItem(this.claveLS);
+    return productosGuardados ? JSON.parse(productosGuardados) : [];
   }
 
   obtenerContadorCarrito(): Observable<number> {
@@ -72,4 +82,6 @@ export class CarritoService {
       localStorage.setItem(this.claveLS, JSON.stringify(carritoActual)); // Actualizar el carrito en el almacenamiento local
     }
   }
+
+  
 }

@@ -11,7 +11,7 @@ export class FiltradoService {
   constructor() { }
 
   actualizarCategoriaSeleccionada(categoriaId: number) {
-    console.log('Categoría seleccionada:', categoriaId);
+    // console.log('Categoría seleccionada:', categoriaId);
     this.categoriaSeleccionadaSubject.next(categoriaId);
   }
 

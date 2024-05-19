@@ -30,14 +30,20 @@ export class UsersService {
     return this.http.post<string>(`${this.myAppUri}${this.myApiUri}/login`, user);
   }
   
-  setUserData(userData: any) {
-    this.userDataSubject.next(userData);
-    localStorage.setItem('userData', JSON.stringify(userData));
-
-  }
+  // setUserData(userData: any) {
+  //   this.userDataSubject.next(userData);
+  //   localStorage.setItem('userData', JSON.stringify(userData));
+  // }
 
   clearUserData() {
     this.userDataSubject.next(null);
     localStorage.removeItem('userData');
+  }
+
+  // veerifica si el usuario está autenticado
+  isLoggedIn(): boolean {
+    // Por ejemplo, puedes verificar si hay un token en el localStorage
+    const token = localStorage.getItem('token');
+    return token !== null; // Devuelve true si hay un token en el localStorage
   }
 }

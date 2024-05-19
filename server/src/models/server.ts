@@ -1,3 +1,4 @@
+require("dotenv").config()
 import express, { Application, Request } from 'express';
 import routesProduct from "../routes/product";
 import routesUser from "../routes/user";
@@ -16,7 +17,6 @@ class Server {
 
     constructor() {
         this.app = express();
-
         this.port = process.env.PORT || '3001';
         this.listen(); 
         this.midlewares();  

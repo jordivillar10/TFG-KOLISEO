@@ -21,15 +21,18 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/signIn">Registrarse</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mi Perfil</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Mis compras</a>
-              <a class="dropdown-item" href="#">Mi cuenta</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Log Out</a>
-            </div>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/compra">Mis compras</a>
           </li>
+          <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mis Compras</a>
+            <div class="dropdown-menu">
+              <!-- <a class="dropdown-item" href="#">Mis compras</a> -->
+              <!-- <a class="dropdown-item" href="#">Mi cuenta</a> -->
+              <!-- <div class="dropdown-divider"></div> -->
+              <!-- <a class="dropdown-item" (click)="logOut()">Log Out</a>
+            </div>
+          </li> -->
           <li class="nav-item me-3 ">
             <ng-template #content let-offcanvas>
               <div class="offcanvas-header">
@@ -39,11 +42,10 @@
               <div class="offcanvas-body">
                 <ul>
                   <li *ngFor="let producto of carrito">
-                    {{ producto.id }}
                     {{ producto.name }}
                     <!-- {{ producto.price }}€ -->
                     {{ producto.cantidad }}
-                    {{ producto.price * producto.cantidad }}€
+                    {{ formatPrice(producto.price, producto.cantidad) }}€
                   </li>
                 </ul>
                 <div class="text-end">

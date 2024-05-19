@@ -1,0 +1,105 @@
+<body>
+  <div class="container container1 ">
+      <div class="row justify-content-center ">
+          <div class="col-7 bg-light rounded mt-2 mb-4 mx-5">
+              <p class="mt-3 fw-bold">Dirección de envío</p>
+              <div class="conteneDEnvio d-flex justify-content-center rounded">
+                  <form class="row g-3">
+                      <div class="col-md-6">
+                        <label for="inputEmail4" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="inputEmail4" placeholder="Introduzca su nombre">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="inputPassword4" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" id="inputPassword4" placeholder="Introduzca sus apellidos">
+                      </div>
+                      <div class="col-12">
+                        <label for="inputAddress" class="form-label">Dirección</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="Dirección">
+                      </div>
+                      <div class="col-12">
+                        <label for="inputAddress2" class="form-label">Número</label>
+                        <input type="text" class="form-control" id="inputAddress2" placeholder="Piso, número">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="inputCity" class="form-label">Ciudad</label>
+                        <input type="text" class="form-control" id="inputCity">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="inputState" class="form-label">País</label>
+                        <select id="inputState" class="form-select">
+                          <option selected>España</option>
+                          <option>Alemania</option>
+                          <option>Portugal</option>
+                          <option>Francia</option>
+                          <option>Italia</option>
+                          <option>UK</option>
+                        </select>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="inputZip" class="form-label">C.Postal</label>
+                        <input type="text" class="form-control" id="inputZip">
+                      </div>
+                      
+                    </form>
+              </div>
+          </div>
+          <div class="col-4 bg-light rounded mt-2 mb-4 " >
+              <p class="fw-bold text-center mt-2">RESUMEN PEDIDO </p>
+              <div class="card  mb-2 rounded" style="width:auto" *ngFor="let producto of carrito">
+                  <div class="row  ">
+                      <div class="col-12 d-flex">
+                          <div class="col-3 bg-light d-flex rounded-start align-items-center">
+                              <img src="../../../../assets/img/protein.png" class="card-img" alt="...">
+                          </div>
+                          <div class="col-6 card-body  ">
+                            <p class="card-title fw-bold" style="font-size: 18px;">Producto: {{ producto.name }}</p>
+                            <p class="card-text">Cantidad: {{producto.cantidad}} </p>
+                            <p class="card-text fw-bold">Precio: {{ formatPrice(producto.price, producto.cantidad) }}€</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div>
+                  <p class="fw-bold">Total: {{ getTotalPrice() }}€</p>
+              </div>
+              <div class="text-center mt-4" >
+                  <ng-template #content let-modal>
+                      <div class="modal-header">
+                          <h4 class="modal-title text-center" id="modal-basic-title">Procesando la compra</h4>
+                          <button type="button " class="cerrar btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                      </div>
+                      <div class="modal-body">
+                          <div class="container container2">
+                          <div class="left-side">
+                              <div class="card card2">
+                              <div class="card-line"></div>
+                              <div class="buttons"></div>
+                              </div>
+                              <div class="post">
+                              <div class="post-line"></div>
+                              <div class="screen">
+                                  <div class="dollar">$</div>
+                              </div>
+                              <div class="numbers"></div>
+                              <div class="numbers-line2"></div>
+                              </div>
+                          </div>
+                          
+                          </div>
+                      </div>
+                      <!-- <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+                      </div> -->
+                  </ng-template>
+                  <!-- <button class="botonComprar text-light" (click)="openVerticallyCentered(content)" (click)="realizarCompra()" (click)="iniciarPago()">Comprar</button> -->
+                  <hr />
+                  <button (click)="iniciarPago()">Pagar</button>
+                  <pre>{{ closeResult }}</pre>
+              </div>
+              </div>
+      </div>
+  </div>
+  
+  
+</body>
