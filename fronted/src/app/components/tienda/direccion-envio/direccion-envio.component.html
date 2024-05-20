@@ -1,31 +1,35 @@
 <body>
   <div class="container container1 ">
       <div class="row justify-content-center ">
-          <div class="col-7 bg-light rounded mt-2 mb-4 mx-5">
+          <div class="col-7 bg-light rounded mt-2 mb-5 mx-5">
               <p class="mt-3 fw-bold">Dirección de envío</p>
-              <div class="conteneDEnvio d-flex justify-content-center rounded">
-                  <form class="row g-3">
+              <div class="conteneDEnvio d-flex justify-content-center rounded mb-4">
+                  <form class="row g-3" #checkoutForm="ngForm" (ngSubmit)="addEnvio()  ">
                       <div class="col-md-6">
                         <label for="inputEmail4" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="inputEmail4" placeholder="Introduzca su nombre">
+                        <input type="text" [(ngModel)]="name" name="name" class="form-control" id="inputEmail4" placeholder="Introduzca su nombre" required>
                       </div>
                       <div class="col-md-6">
                         <label for="inputPassword4" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control" id="inputPassword4" placeholder="Introduzca sus apellidos">
+                        <input type="text" [(ngModel)]="surname" name="surname" class="form-control" id="inputPassword4" placeholder="Introduzca sus apellidos" required/>
                       </div>
                       <div class="col-12">
                         <label for="inputAddress" class="form-label">Dirección</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="Dirección">
+                        <input type="text" [(ngModel)]="calle" name="calle" class="form-control" id="inputAddress" placeholder="Dirección" required/>
                       </div>
                       <div class="col-12">
                         <label for="inputAddress2" class="form-label">Número</label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder="Piso, número">
+                        <input type="text" [(ngModel)]="numero" name="numero" class="form-control" id="inputAddress2" placeholder="Piso, número" required/>
                       </div>
                       <div class="col-md-6">
                         <label for="inputCity" class="form-label">Ciudad</label>
-                        <input type="text" class="form-control" id="inputCity">
+                        <input type="text" [(ngModel)]="ciudad" name="ciudad" class="form-control" id="inputCity" required/>
                       </div>
                       <div class="col-md-4">
+                        <label for="inputCountry" class="form-label">Pais</label>
+                        <input type="text" [(ngModel)]="pais" name="pais" class="form-control" id="inputCountry" required/>
+                      </div>
+                      <!-- <div class="col-md-4">
                         <label for="inputState" class="form-label">País</label>
                         <select id="inputState" class="form-select">
                           <option selected>España</option>
@@ -35,12 +39,13 @@
                           <option>Italia</option>
                           <option>UK</option>
                         </select>
-                      </div>
+                      </div> -->
                       <div class="col-md-2">
                         <label for="inputZip" class="form-label">C.Postal</label>
-                        <input type="text" class="form-control" id="inputZip">
+                        <input type="text" [(ngModel)]="cp" name="cp" class="form-control" id="inputZip">
                       </div>
                       
+                      <button type="submit" class="btn btn-primary" >Pagar</button>
                     </form>
               </div>
           </div>
@@ -94,7 +99,7 @@
                   </ng-template>
                   <!-- <button class="botonComprar text-light" (click)="openVerticallyCentered(content)" (click)="realizarCompra()" (click)="iniciarPago()">Comprar</button> -->
                   <hr />
-                  <button (click)="iniciarPago()">Pagar</button>
+                  <!-- <button (click)="iniciarPagoYCrearEnvio()" >Pagar</button> -->
                   <pre>{{ closeResult }}</pre>
               </div>
               </div>

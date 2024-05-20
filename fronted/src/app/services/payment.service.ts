@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { CarritoService } from './carrito.service';
 import { tap } from 'rxjs/operators'; 
 import { Router } from '@angular/router';
+import { Envio } from '../interfaces/envio';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class PaymentService {
   constructor(private http: HttpClient, private carritoService: CarritoService, private userService: UsersService, private router: Router) { 
     this.myAppUri = environment.endpoint;
     this.myApiUri = 'api/payment';
+  }
+
+  añadirDireccion(envio: Envio): Observable<any>{
+    return this.http.post(`${this.myAppUri}${this.myApiUri}/direccion-envio`, envio);
   }
 
   createCheckoutSession(): Observable<any> {

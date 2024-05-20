@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var payment_1 = require("../controllers/payment");
+var validate_token_1 = require("./validate-token");
+var router = (0, express_1.Router)();
+router.post("/create-checkout-session", validate_token_1.default, payment_1.createSession);
+router.post('/direccion-envio', payment_1.newEnvio);
+router.get("/success", function (req, res) { return res.redirect('http://localhost:4200/tienda'); });
+router.get("/cancel", function (req, res) { return res.send('http://localhost:4200/direccion-envio'); });
+exports.default = router;

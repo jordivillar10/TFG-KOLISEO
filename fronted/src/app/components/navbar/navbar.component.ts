@@ -18,7 +18,7 @@ constructor(private router: Router, private userService: UsersService) {}
     this.userService.clearUserData(); // Limpia los datos del usuario
 
     localStorage.removeItem('token');
-    localStorage.removeItem('userData');
+    // localStorage.removeItem('userData');
     this.router.navigate(['/login']);
   }
 

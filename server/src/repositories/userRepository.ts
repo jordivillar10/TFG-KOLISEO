@@ -34,16 +34,3 @@ export const createUser = async ({ name, surname, email, password }: any) => {
     }
 };
 
-// export const getUserInfo = async (userId: number) => {
-//     try {
-//         const user = await User.findByPk(userId);
-
-//         if(!user) {
-//             return null
-//         }
-//         return user;
-//     }catch(error) {
-//         throw new Error("Error al obtener información del usuario:" + error);
-        
-//     }
-// }

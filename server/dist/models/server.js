@@ -24,6 +24,8 @@ const excercise_1 = require("./excercise");
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swaggerConfig_1 = __importDefault(require("../swaggerConfig")); // Ruta al archivo de configuración de Swagger
 const payments_1 = __importDefault(require("../routes/payments"));
+const envio_1 = require("./envio");
+const purchase_1 = require("./purchase");
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -59,6 +61,8 @@ class Server {
                 yield product_2.Product.sync();
                 yield user_2.User.sync();
                 yield excercise_1.Exercise.sync();
+                yield envio_1.Envio.sync();
+                yield purchase_1.Purchase.sync();
             }
             catch (error) {
                 console.error('No se pudo conectar a la base de datos:', error);

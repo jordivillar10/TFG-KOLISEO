@@ -12,7 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createSession = void 0;
+exports.newEnvio = exports.createSession = void 0;
+const envioRepository_1 = require("../repositories/envioRepository");
 const stripe_1 = __importDefault(require("stripe"));
 const stripe = new stripe_1.default('sk_test_51PHOSuDJExqBi5rhXletOD60IRNjaIaynn0sTH5np0DZPkHtVUc8prsSpICOD8jNLQjhrzHjGBpTyKykynlR7h670082yVlkGe');
 const createSession = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -25,10 +26,9 @@ const createSession = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         const lineItems = cart.map((product) => ({
             price_data: {
                 currency: 'eur',
-                unit_amount: Math.round(product.price * 100), // Convertir el precio a centavos
+                unit_amount: Math.round(product.price * 100), // Convertir el precio a centimos
                 product_data: {
                     name: product.name,
-                    // Otros datos del producto
                 },
             },
             quantity: product.cantidad,
@@ -38,8 +38,8 @@ const createSession = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
-            success_url: 'http://localhost:3001/api/payment/success',
-            cancel_url: 'http://localhost:3001/api/payment/cancel',
+            success_url: 'http://localhost:4200/inicioTienda',
+            cancel_url: 'http://localhost:4200/direccion-envio',
         });
         // Envía la URL de la sesión a tu cliente
         return res.json({ id: session.id, url: session.url });
@@ -50,3 +50,17 @@ const createSession = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.createSession = createSession;
+const newEnvio = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { name, surname, calle, numero, ciudad, pais, cp } = req.body;
+        const newEnvio = yield (0, envioRepository_1.createEnvio)({ name, surname, calle, numero, ciudad, pais, cp });
+        res.status(201).json(newEnvio);
+    }
+    catch (error) {
+        res.status(400).json({
+            msg: 'Upss ocurrio un error',
+            error
+        });
+    }
+});
+exports.newEnvio = newEnvio;

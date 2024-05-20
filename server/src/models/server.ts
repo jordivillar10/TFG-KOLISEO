@@ -10,6 +10,8 @@ import { Exercise } from './excercise';
 import swaggerUi from 'swagger-ui-express';
 import specs from '../swaggerConfig'; // Ruta al archivo de configuración de Swagger
 import  routesPayment  from "../routes/payments";
+import { Envio } from './envio';
+import { Purchase } from './purchase';
 
 class Server {
     private app: Application;
@@ -52,6 +54,8 @@ class Server {
             await Product.sync()
             await User.sync()
             await Exercise.sync()
+            await Envio.sync()
+            await Purchase.sync()
         } catch (error) {
             console.error('No se pudo conectar a la base de datos:', error);
         }

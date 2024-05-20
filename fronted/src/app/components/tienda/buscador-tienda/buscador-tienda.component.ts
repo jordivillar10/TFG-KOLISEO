@@ -64,7 +64,7 @@ export class BuscadorTiendaComponent {
       
       localStorage.removeItem('token');
       localStorage.removeItem('carrito');
-      localStorage.removeItem('userData');
+      // localStorage.removeItem('userData');
       this.router.navigate(['/login']);
     }
 }

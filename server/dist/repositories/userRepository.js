@@ -47,14 +47,3 @@ const createUser = (_a) => __awaiter(void 0, [_a], void 0, function* ({ name, su
     }
 });
 exports.createUser = createUser;
-// export const getUserInfo = async (userId: number) => {
-//     try {
-//         const user = await User.findByPk(userId);
-//         if(!user) {
-//             return null
-//         }
-//         return user;
-//     }catch(error) {
-//         throw new Error("Error al obtener información del usuario:" + error);
-//     }
-// }
