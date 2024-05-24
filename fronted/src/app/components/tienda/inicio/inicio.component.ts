@@ -1,11 +1,12 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { ActivatedRoute, RouterLink } from "@angular/router";
 import { BuscadorTiendaComponent } from '../buscador-tienda/buscador-tienda.component';
 import { NavbarTiendaComponent } from '../navbar-tienda/navbar-tienda.component';
 import { DashboardTiendaComponent } from '../dashboard-tienda/dashboard-tienda.component';
 import { NgIf } from '@angular/common';
 import { FooterTiendaComponent } from '../footer-tienda/footer-tienda.component';
 import { ProductService } from '../../../services/product.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-inicio',
@@ -15,7 +16,21 @@ import { ProductService } from '../../../services/product.service';
   styleUrl: './inicio.component.css'
 })
 export class InicioComponent  {
+  constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const sessionId = params['session_id'];
+      if (sessionId) {
+        this.http.get("http://localhost:3001/inicioTienda")
+          .subscribe(response => {
+            console.log('Compra registrada con éxito:', response);
+          }, error => {
+            console.error('Error registrando la compra:', error);
+          });
+      }
+    });
+  }
   // showBuscador: boolean = false;
   // lastScrollTop = 0;
   

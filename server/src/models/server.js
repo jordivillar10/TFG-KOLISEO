@@ -48,6 +48,8 @@ var excercise_1 = require("./excercise");
 var swagger_ui_express_1 = require("swagger-ui-express");
 var swaggerConfig_1 = require("../swaggerConfig"); // Ruta al archivo de configuración de Swagger
 var payments_1 = require("../routes/payments");
+var envio_1 = require("./envio");
+var purchase_1 = require("./purchase");
 var Server = /** @class */ (function () {
     function Server() {
         this.app = (0, express_1.default)();
@@ -64,6 +66,9 @@ var Server = /** @class */ (function () {
         });
     };
     Server.prototype.routes = function () {
+        this.app.get('/', function (req, res) {
+            res.send('Bienvenido a la API');
+        });
         this.app.use('/api/products', product_1.default);
         this.app.use('/api/users', user_1.default);
         this.app.use('/api/exercises', exercise_1.default);
@@ -84,7 +89,7 @@ var Server = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 4, , 5]);
+                        _a.trys.push([0, 6, , 7]);
                         return [4 /*yield*/, product_2.Product.sync()];
                     case 1:
                         _a.sent();
@@ -94,12 +99,18 @@ var Server = /** @class */ (function () {
                         return [4 /*yield*/, excercise_1.Exercise.sync()];
                     case 3:
                         _a.sent();
-                        return [3 /*break*/, 5];
+                        return [4 /*yield*/, envio_1.Envio.sync()];
                     case 4:
+                        _a.sent();
+                        return [4 /*yield*/, purchase_1.Purchase.sync()];
+                    case 5:
+                        _a.sent();
+                        return [3 /*break*/, 7];
+                    case 6:
                         error_1 = _a.sent();
                         console.error('No se pudo conectar a la base de datos:', error_1);
-                        return [3 /*break*/, 5];
-                    case 5: return [2 /*return*/];
+                        return [3 /*break*/, 7];
+                    case 7: return [2 /*return*/];
                 }
             });
         });

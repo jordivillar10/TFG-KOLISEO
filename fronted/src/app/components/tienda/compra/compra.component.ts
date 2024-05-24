@@ -6,7 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PaymentService } from '../../../services/payment.service';
-
+import { PurchasesService } from '../../../services/purchases.service';
+interface PurchaseWithProducts extends PurchasesService {
+  products: { product_id: number, product_name: string, cantidad: number }[];
+}
 @Component({
   selector: 'app-compra',
   standalone: true,
@@ -15,97 +18,44 @@ import { PaymentService } from '../../../services/payment.service';
   styleUrl: './compra.component.css'
 })
 export class CompraComponent {
+  purchases: PurchaseWithProducts[] = [];
+  myPurchases: any[] = [];
   carrito: productoCarrito[] = [];
   private carritoSubscription: Subscription ;
   
   closeResult = '';
-  constructor(private carritoService: CarritoService, private modalService: NgbModal, private paymentService: PaymentService) {
+  constructor(private carritoService: CarritoService, 
+    private modalService: NgbModal,
+    private purchaseService: PurchasesService
+  ) {
     this.carritoSubscription = this.carritoService.carrito$.subscribe(carrito => {
       this.carrito = carrito;
     });
   }
-  
-  iniciarPago() {
-    this.paymentService.createCheckoutSession().subscribe(
-      (response) => {
-        // Manejar la respuesta del backend, por ejemplo, redireccionar al usuario a la página de pago
-        console.log('Sesión de pago creada:', response);
-      },
-      (error) => {
-        // Manejar errores
-        console.error('Error al crear sesión de pago:', error);
-      }
-    );
-  }
 
+  ngOnInit(): void {
+    const userId = this.purchaseService.getUserId();
+    if (userId) {
+      this.purchaseService.showHistorial(userId).subscribe((data: PurchaseWithProducts[]) => {
+        this.myPurchases = data;
+      }, error => {
+        console.error('Error fetching purchases:', error);
+      });
+    } else {
+      console.error('User is not logged in');
+    }
+  }
+  
+  
+  
   openVerticallyCentered(content: TemplateRef<any>) {
 		this.modalService.open(content, { centered: true });
 	}
 
-	private getDismissReason(reason: any): string {
-		switch (reason) {
-			case ModalDismissReasons.ESC:
-				return 'by pressing ESC';
-			case ModalDismissReasons.BACKDROP_CLICK:
-				return 'by clicking on a backdrop';
-			default:
-				return `with: ${reason}`;
-		}
-	}
-  selectedMethod: string = '';
-    paypalForm = { username: '', password: '' };
-    creditCardForm = { cardName: '', cardNumber: '', expiryDate: '', cvv: '' };
-
-    selectPaymentMethod(event: any) {
-        this.selectedMethod = event.target.value;
-    }
-    
-    formatExpiryDate(event: any) {
-      let input = event.target.value;
-      if (input.length === 2 && event.data !== '/') {
-        input += '/';
-      }
-      this.creditCardForm.expiryDate = input;
-    }
-    isExpiryDateValid(date: string): boolean {
-      let today = new Date();
-      let currentYear = today.getFullYear().toString().slice(-2);
-      let currentMonth = (today.getMonth() + 1).toString();
-      if (currentMonth.length === 1) {
-        currentMonth = '0' + currentMonth;
-      }
-      return date >= currentMonth + '/' + currentYear;
-    }
-    cardNumber: string = '';
-    cardType: string = '';
-    
-    detectCardType() {
-      if (this.cardNumber === '') {
-        this.cardType = ''; 
-        return;
-      }
-
-      const firstDigit = this.cardNumber.charAt(0);
-      switch (firstDigit) {
-        case '4':
-          this.cardType = 'VISA';
-          break;
-        case '5':
-          this.cardType = 'Mastercard';
-          break;
-        default:
-          this.cardType = 'Desconocida';
-          break;
-      }
-    }
-
-    getTotalPrice(): number {
-      let total = 0;
-      for (let producto of this.carrito) {
-        total += producto.price * producto.cantidad;
-      }
-      return total;
-    }
-
-    
+	
+  // showHistorial() {
+  //   this.purchaseService.showHistorial().subscribe({
+        
+  //   })
+  // }
 }

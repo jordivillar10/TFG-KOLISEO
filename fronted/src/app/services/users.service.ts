@@ -18,8 +18,10 @@ export class UsersService {
     this.myAppUri = environment.endpoint;
     this.myApiUri = 'api/users'
     const userDataString = localStorage.getItem('userData');
-    const userData = userDataString ? JSON.parse(userDataString) : {}; // Si userDataString es null, inicializa userData como un objeto vacío
-    this.userDataSubject.next(userData);
+    const userData = userDataString ? JSON.parse(userDataString) : null;
+    if (userData) {
+      this.userDataSubject.next(userData);
+    }
   }
 
   signIn(user: User): Observable<any> {
@@ -29,11 +31,12 @@ export class UsersService {
   login(user: User): Observable<string> {
     return this.http.post<string>(`${this.myAppUri}${this.myApiUri}/login`, user);
   }
-  
-  // setUserData(userData: any) {
-  //   this.userDataSubject.next(userData);
-  //   localStorage.setItem('userData', JSON.stringify(userData));
-  // }
+
+
+  setUserData(userData: any) {
+    this.userDataSubject.next(userData);
+    localStorage.setItem('userData', JSON.stringify(userData));
+  }
 
   clearUserData() {
     this.userDataSubject.next(null);
@@ -46,4 +49,9 @@ export class UsersService {
     const token = localStorage.getItem('token');
     return token !== null; // Devuelve true si hay un token en el localStorage
   }
+
+  // getUserPurchases(userData: number)  {
+  //   return this.http.get<number>(`${this.myAppUri}${this.myApiUri}/${userId}/purchases`);
+  // }
+
 }

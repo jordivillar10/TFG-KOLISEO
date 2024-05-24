@@ -47,7 +47,7 @@ var createSession = function (req, res) { return __awaiter(void 0, void 0, void 
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 cart = req.body.cart;
-                console.log('Carrito recibido en backend:', cart);
+                // console.log('Carrito recibido en backend:', cart); 
                 if (!cart || !Array.isArray(cart)) {
                     return [2 /*return*/, res.status(400).json({ error: 'Carrito inválido' })];
                 }
@@ -70,6 +70,7 @@ var createSession = function (req, res) { return __awaiter(void 0, void 0, void 
                     })];
             case 1:
                 session = _a.sent();
+                // console.log(session);
                 // Envía la URL de la sesión a tu cliente
                 return [2 /*return*/, res.json({ id: session.id, url: session.url })];
             case 2:
@@ -83,19 +84,17 @@ var createSession = function (req, res) { return __awaiter(void 0, void 0, void 
 }); };
 exports.createSession = createSession;
 var newEnvio = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name_1, surname, calle, numero, ciudad, pais, cp, newEnvio_1, error_2;
+    var _a, name_1, surname, calle, numero, ciudad, pais, cp, user_id, purchase_id, newEnvio_1, error_2;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                _a = req.body, name_1 = _a.name, surname = _a.surname, calle = _a.calle, numero = _a.numero, ciudad = _a.ciudad, pais = _a.pais, cp = _a.cp;
-                return [4 /*yield*/, (0, envioRepository_1.createEnvio)({ name: name_1, surname: surname, calle: calle, numero: numero, ciudad: ciudad, pais: pais, cp: cp })];
+                _a = req.body, name_1 = _a.name, surname = _a.surname, calle = _a.calle, numero = _a.numero, ciudad = _a.ciudad, pais = _a.pais, cp = _a.cp, user_id = _a.user_id, purchase_id = _a.purchase_id;
+                return [4 /*yield*/, (0, envioRepository_1.createEnvio)({ name: name_1, surname: surname, calle: calle, numero: numero, ciudad: ciudad, pais: pais, cp: cp, user_id: user_id, purchase_id: purchase_id })];
             case 1:
                 newEnvio_1 = _b.sent();
-                res.json({
-                    msg: "Direccion creado exitosamente!"
-                });
-                return [2 /*return*/, res.status(201).json(newEnvio_1)];
+                res.status(201).json(newEnvio_1);
+                return [3 /*break*/, 3];
             case 2:
                 error_2 = _b.sent();
                 res.status(400).json({

@@ -1,5 +1,5 @@
 require("dotenv").config()
-import express, { Application, Request } from 'express';
+import express, { Application, Request, Response } from 'express';
 import routesProduct from "../routes/product";
 import routesUser from "../routes/user";
 import routesExercise from "../routes/exercise"
@@ -12,6 +12,7 @@ import specs from '../swaggerConfig'; // Ruta al archivo de configuración de Sw
 import  routesPayment  from "../routes/payments";
 import { Envio } from './envio';
 import { Purchase } from './purchase';
+import { PurchaseProducts } from './purchaseproducts';
 
 class Server {
     private app: Application;
@@ -33,6 +34,10 @@ class Server {
     }
 
     routes() {
+        this.app.get('/', (req: Request, res: Response) => {
+            res.send('Bienvenido a la API');
+        });
+
         this.app.use('/api/products', routesProduct);
         this.app.use('/api/users', routesUser);
         this.app.use('/api/exercises', routesExercise);
@@ -56,6 +61,7 @@ class Server {
             await Exercise.sync()
             await Envio.sync()
             await Purchase.sync()
+            await PurchaseProducts.sync()
         } catch (error) {
             console.error('No se pudo conectar a la base de datos:', error);
         }

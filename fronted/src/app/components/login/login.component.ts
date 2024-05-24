@@ -19,10 +19,11 @@ import { ErrorService } from '../../services/error.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  
   email: string = '';
   password: string = '';
   loading: boolean = false;
-  // userData: any;
+  userData: any;
 
   constructor(private toastr: ToastrService, 
     private _userService: UsersService,
@@ -46,17 +47,20 @@ export class LoginComponent {
     }
     // console.log(this.email);
     // console.log(this.password);
+    
 
     this.loading = true;
 
     this._userService.login(user).subscribe({
       next: (data: any) => {
-        // console.log(data); // Verifica que data sea realmente el objeto que esperas
-        // this.userData = data;
-        // console.log("userdata->",this.userData);
-        // this._userService.setUserData(data);
+        // console.log(data.user); // Verifica que data sea realmente el objeto que esperas
+        this.userData = data;
+        // console.log("userdata->",this.userData.user.id);
+        this._userService.setUserData(data.user.id);
         // Accede a las propiedades del objeto directamente
         localStorage.setItem('token', data.token);
+        // localStorage.setItem('user', data.user.id);
+        // localStorage.setItem('user', data.user);
 
         // Redirigir al usuario a la URL almacenada o al dashboard
         const redirectUrl = localStorage.getItem('redirectUrl');
@@ -75,5 +79,7 @@ export class LoginComponent {
     });    
     
   }
+
+  
   
 }

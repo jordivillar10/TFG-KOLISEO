@@ -40,7 +40,7 @@ exports.createEnvio = void 0;
 var envio_1 = require("../models/envio");
 var createEnvio = function (_a) { return __awaiter(void 0, [_a], void 0, function (_b) {
     var newEnvio, error_1;
-    var name = _b.name, surname = _b.surname, calle = _b.calle, numero = _b.numero, ciudad = _b.ciudad, pais = _b.pais, cp = _b.cp;
+    var name = _b.name, surname = _b.surname, calle = _b.calle, numero = _b.numero, ciudad = _b.ciudad, pais = _b.pais, cp = _b.cp, user_id = _b.user_id, purchase_id = _b.purchase_id;
     return __generator(this, function (_c) {
         switch (_c.label) {
             case 0:
@@ -52,7 +52,9 @@ var createEnvio = function (_a) { return __awaiter(void 0, [_a], void 0, functio
                         numero: numero,
                         ciudad: ciudad,
                         pais: pais,
-                        cp: cp
+                        cp: cp,
+                        user_id: user_id,
+                        purchase_id: purchase_id
                     })];
             case 1:
                 newEnvio = _c.sent();

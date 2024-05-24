@@ -6,4 +6,6 @@ export interface Envio {
     ciudad: string
     pais: string
     cp: string
+    user_id: number
+    purchase_id: number
 }

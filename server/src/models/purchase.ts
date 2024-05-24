@@ -8,16 +8,32 @@ export const Purchase = sequelize.define('purchase', {
         primaryKey: true,
         autoIncrement: true
     },
+    total: {
+        type: DataTypes.DECIMAL(10, 2),
+        
+    },
     user_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         references: {
             model: User,
             key: 'id'
         }
     },
-    total: {
-        type: DataTypes.DECIMAL(10, 2),
-        allowNull: false
+    // product_id: {
+    //     type: DataTypes.INTEGER,
+    //     // allowNull: false,
+    //     references: {
+    //         model: Product,
+    //         key: 'id'
+    //     }
+    // },
+    cantidad: {
+        type: DataTypes.INTEGER,
+        // allowNull: false
+    },
+    purchase_date: {
+        type: DataTypes.DATE,
+        // allowNull: false,
+        defaultValue: DataTypes.NOW
     }
 });

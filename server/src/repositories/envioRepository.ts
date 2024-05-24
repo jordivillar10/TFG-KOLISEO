@@ -1,6 +1,6 @@
 import { Envio } from "../models/envio";
 
-export const createEnvio = async ({ name, surname, calle, numero, ciudad, pais, cp}: any) => {
+export const createEnvio = async ({ name, surname, calle, numero, ciudad, pais, cp, user_id, purchase_id}: any) => {
     try {
 
         // Introducir la direccion de envio
@@ -11,7 +11,9 @@ export const createEnvio = async ({ name, surname, calle, numero, ciudad, pais, 
             numero: numero,
             ciudad: ciudad,
             pais: pais,
-            cp: cp
+            cp: cp,
+            user_id: user_id,
+            purchase_id: purchase_id
         });
 
         return newEnvio;

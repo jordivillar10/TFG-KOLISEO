@@ -4,7 +4,7 @@
           <div class="col-7 bg-light rounded mt-2 mb-5 mx-5">
               <p class="mt-3 fw-bold">Dirección de envío</p>
               <div class="conteneDEnvio d-flex justify-content-center rounded mb-4">
-                  <form class="row g-3" #checkoutForm="ngForm" (ngSubmit)="addEnvio()  ">
+                  <form class="row g-3" #checkoutForm="ngForm" (ngSubmit)="iniciarPagoYCrearEnvio()  ">
                       <div class="col-md-6">
                         <label for="inputEmail4" class="form-label">Nombre</label>
                         <input type="text" [(ngModel)]="name" name="name" class="form-control" id="inputEmail4" placeholder="Introduzca su nombre" required>

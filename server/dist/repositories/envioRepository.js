@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createEnvio = void 0;
 const envio_1 = require("../models/envio");
-const createEnvio = (_a) => __awaiter(void 0, [_a], void 0, function* ({ name, surname, calle, numero, ciudad, pais, cp }) {
+const createEnvio = (_a) => __awaiter(void 0, [_a], void 0, function* ({ name, surname, calle, numero, ciudad, pais, cp, user_id, purchase_id }) {
     try {
         // Introducir la direccion de envio
         const newEnvio = yield envio_1.Envio.create({
@@ -21,7 +21,9 @@ const createEnvio = (_a) => __awaiter(void 0, [_a], void 0, function* ({ name, s
             numero: numero,
             ciudad: ciudad,
             pais: pais,
-            cp: cp
+            cp: cp,
+            user_id: user_id,
+            purchase_id: purchase_id
         });
         return newEnvio;
     }

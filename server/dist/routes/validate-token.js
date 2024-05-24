@@ -7,24 +7,20 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const validateToken = (req, res, next) => {
     console.log('validate token');
     const headerToken = req.headers['authorization'];
-    if (headerToken != undefined && headerToken.startsWith('Bearer ')) {
-        //tiene token 
+    if (headerToken && headerToken.startsWith('Bearer ')) {
         try {
             const bearerToken = headerToken.slice(7);
             const decodedToken = jsonwebtoken_1.default.verify(bearerToken, process.env.SECRET_KEY || 'pepito123');
-            // req.user = { id: decodedToken.id };
+            req.user = { id: decodedToken.id }; // Agrega el ID del usuario al objeto req
             next();
         }
         catch (error) {
-            res.status(401).json({
+            return res.status(401).json({
                 msg: 'Token no válido'
             });
         }
     }
     else {
-        // res.status(401).json({
-        //     msg: "Acceso Denegado"
-        // })
         next();
     }
 };

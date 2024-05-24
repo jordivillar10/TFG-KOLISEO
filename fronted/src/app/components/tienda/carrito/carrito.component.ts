@@ -24,18 +24,18 @@ export class CarritoComponent  {
   constructor(private carritoService: CarritoService, private paymentService: PaymentService, 
     private userService: UsersService, private router: Router, private toastr: ToastrService) {}
 
-  iniciarPago() {
-    this.paymentService.createCheckoutSession().subscribe(
-      (response) => {
-        // Manejar la respuesta del backend, por ejemplo, redireccionar al usuario a la página de pago
-        console.log('Sesión de pago creada:', response);
-      },
-      (error) => {
-        // Manejar errores
-        console.error('Error al crear sesión de pago:', error);
-      }
-    );
-  }
+  // iniciarPago() {
+  //   this.paymentService.createCheckoutSession(envioCompra).subscribe(
+  //     (response) => {
+  //       // Manejar la respuesta del backend, por ejemplo, redireccionar al usuario a la página de pago
+  //       console.log('Sesión de pago creada:', response);
+  //     },
+  //     (error) => {
+  //       // Manejar errores
+  //       console.error('Error al crear sesión de pago:', error);
+  //     }
+  //   );
+  // }
   
 
   ngOnInit() {

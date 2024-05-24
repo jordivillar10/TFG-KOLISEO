@@ -3,41 +3,39 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Purchase = void 0;
+exports.PurchaseProducts = void 0;
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
-const user_1 = require("./user");
-exports.Purchase = connection_1.default.define('purchase', {
+const product_1 = require("./product");
+const purchase_1 = require("./purchase");
+exports.PurchaseProducts = connection_1.default.define('purchaseproducts', {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    total: {
-        type: sequelize_1.DataTypes.DECIMAL(10, 2),
-    },
-    user_id: {
+    purchase_id: {
         type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
         references: {
-            model: user_1.User,
+            model: purchase_1.Purchase,
             key: 'id'
         }
     },
-    // product_id: {
-    //     type: DataTypes.INTEGER,
-    //     // allowNull: false,
-    //     references: {
-    //         model: Product,
-    //         key: 'id'
-    //     }
-    // },
+    product_id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: product_1.Product,
+            key: 'id'
+        }
+    },
     cantidad: {
         type: sequelize_1.DataTypes.INTEGER,
-        // allowNull: false
+        allowNull: false
     },
-    purchase_date: {
-        type: sequelize_1.DataTypes.DATE,
-        // allowNull: false,
-        defaultValue: sequelize_1.DataTypes.NOW
-    }
+    price: {
+        type: sequelize_1.DataTypes.FLOAT,
+        allowNull: false
+    },
 });

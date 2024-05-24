@@ -3,6 +3,11 @@ import { User } from '../models/user';
 import { createUser } from "../repositories/userRepository";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { getUserPurchases } from '../repositories/purchaseRepository';
+
+interface CustomRequest extends Request {
+    user: { id: number }; // Define the 'user' property
+}
 
 export const newUser = async (req: Request, res: Response) => {
     try {
@@ -58,4 +63,5 @@ export const loginUser = async (req: Request, res: Response) => {
         });
     }
 }
+
 

@@ -26,6 +26,7 @@ const swaggerConfig_1 = __importDefault(require("../swaggerConfig")); // Ruta al
 const payments_1 = __importDefault(require("../routes/payments"));
 const envio_1 = require("./envio");
 const purchase_1 = require("./purchase");
+const purchaseproducts_1 = require("./purchaseproducts");
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -41,6 +42,9 @@ class Server {
         });
     }
     routes() {
+        this.app.get('/', (req, res) => {
+            res.send('Bienvenido a la API');
+        });
         this.app.use('/api/products', product_1.default);
         this.app.use('/api/users', user_1.default);
         this.app.use('/api/exercises', exercise_1.default);
@@ -63,6 +67,7 @@ class Server {
                 yield excercise_1.Exercise.sync();
                 yield envio_1.Envio.sync();
                 yield purchase_1.Purchase.sync();
+                yield purchaseproducts_1.PurchaseProducts.sync();
             }
             catch (error) {
                 console.error('No se pudo conectar a la base de datos:', error);

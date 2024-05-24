@@ -24,11 +24,11 @@ export class PaymentService {
     return this.http.post(`${this.myAppUri}${this.myApiUri}/direccion-envio`, envio);
   }
 
-  createCheckoutSession(): Observable<any> {
+  createCheckoutSession(envioCompra: any): Observable<any> {
     const carrito = this.carritoService.obtenerCarritoLS();
     console.log('Carrito:', carrito); 
 
-    return this.http.post<any>(`${this.myAppUri}${this.myApiUri}/create-checkout-session`, {cart: carrito})
+    return this.http.post<any>(`${this.myAppUri}${this.myApiUri}/create-checkout-session`, envioCompra)
     .pipe(
       tap((response: any) => { 
         if (response && response.url) {

@@ -22,6 +22,7 @@ import { CarritoComponent } from "./components/tienda/carrito/carrito.component"
 import { CompraComponent } from "./components/tienda/compra/compra.component";
 import { AuthGuard } from "./auth.guard";
 import { DireccionEnvioComponent } from "./components/tienda/direccion-envio/direccion-envio.component";
+import { CompraHechaComponent } from "./components/tienda/compra-hecha/compra-hecha.component";
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
     { path: 'carrito', component: CarritoComponent },
     { path: 'direccion-envio', component: DireccionEnvioComponent , canActivate: [AuthGuard]},
     { path: 'compra', component: CompraComponent },
+    { path: 'compra-hecha', component: CompraHechaComponent },
     { path: 'registros', component: RegistrosComponent},
     { path: 'registrarTrain', component: RegistrarComponent},
     { path: 'estadisticas', component: EstadisticasComponent},
