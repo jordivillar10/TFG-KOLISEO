@@ -1,7 +1,26 @@
+.deleteIcon {
+    cursor: pointer;
+}
+
 .articulo {
     width: 100%;
 
 }
 .contenedorArt {
     width: 100px;
+}
+
+.modCantidad {
+    border-style: none;
+    background-color: rgb(0, 0, 0);
+}
+
+.volver {
+    text-decoration: none;
+    background-color: rgb(55, 255, 0);
+    height: 50px;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 20px;
+    
 }

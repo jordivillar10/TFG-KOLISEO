@@ -111,13 +111,12 @@ const handleSuccess = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 });
 exports.handleSuccess = handleSuccess;
 const getUserPurchasesController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userId = req.params.user_id;
-    console.log(userId);
-    if (!userId || isNaN(Number(userId))) {
+    const userId = parseInt(req.params.user_id, 10);
+    if (isNaN(userId)) {
         return res.status(400).json({ error: 'Invalid user ID' });
     }
     try {
-        const purchases = yield (0, purchaseRepository_1.getUserPurchases)(Number(userId));
+        const purchases = yield (0, purchaseRepository_1.getUserPurchases)(userId);
         res.json(purchases);
     }
     catch (error) {

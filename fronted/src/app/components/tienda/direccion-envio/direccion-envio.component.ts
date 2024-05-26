@@ -1,7 +1,7 @@
 import { CarritoService } from './../../../services/carrito.service';
 import { Component } from '@angular/core';
 import { PaymentService } from '../../../services/payment.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { productoCarrito } from '../../../interfaces/productoCarrito';
 import { Subscription } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +17,7 @@ import { UsersService } from '../../../services/users.service';
 @Component({
   selector: 'app-direccion-envio',
   standalone: true,
-  imports: [NgFor, FormsModule],
+  imports: [NgFor, FormsModule, RouterModule],
   templateUrl: './direccion-envio.component.html',
   styleUrl: './direccion-envio.component.css'
 })
@@ -110,6 +110,7 @@ export class DireccionEnvioComponent {
           }
       },
       (error) => {
+        this.toastrSvc.error('No se ha podido completar la compra', 'Añade productos al carrito')
           console.error('Error al crear sesión de pago:', error);
       }
   );

@@ -19,7 +19,7 @@ export class RegistrarComponent {
 
   exercises: any[] = [];
   exercisesFiltrados: any[] = [];
-
+  
   constructor(
     private _exerciseService: ExerciseService,
     private http: HttpClient
@@ -32,7 +32,6 @@ export class RegistrarComponent {
   }
 
   ngOnInit() {
-    console.log("probando eventos ciclo vida");
  
     this._exerciseService
       .getExercises()
@@ -41,6 +40,8 @@ export class RegistrarComponent {
         this.exercises = data;
         this.exercisesFiltrados = data;
         console.log("exercises->", this.exercises);
+
+        
        //  console.log(typeof(this.productosPrueba[0].id)); 
       });
  
@@ -50,6 +51,9 @@ export class RegistrarComponent {
     // Ejemplo: Devolver true si exercises no está vacío
     this.exercises.forEach((element: any) => {
       element.seleccionado = !element.seleccionado;
+      console.log("ejericios seleccionados", this.exercisesFiltrados);
+      
+      
     });
   }
   ejerciciosSeleccionados: any[] = [];
@@ -58,6 +62,8 @@ export class RegistrarComponent {
   mostrarEjercicio(ejercicio: any) {
     if (!this.ejerciciosSeleccionados.includes(ejercicio)) {
       this.ejerciciosSeleccionados.push(ejercicio);
+      console.log(this.ejerciciosSeleccionados);
+      
     }
   }
 
@@ -77,6 +83,7 @@ export class RegistrarComponent {
     if (!ejercicio.campos) {
       ejercicio.campos = []; // Inicializar el arreglo de campos si no existe
     }
+    ;
     ejercicio.campos.push({ repeticiones: '', kg: '' }); // Agregar un nuevo campo
   }
 
@@ -113,4 +120,9 @@ export class RegistrarComponent {
     return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   }
 
+  get hayEjerciciosSeleccionados(): boolean {
+    return this.ejerciciosSeleccionados.length > 0;
+  }
+
+  
 }

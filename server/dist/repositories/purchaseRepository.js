@@ -15,22 +15,45 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUserPurchases = void 0;
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
-function getUserPurchases(userId) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const query = `
-        SELECT p.id AS product_id, p.name AS product_name, pu.cantidad, pu.purchase_date, pu.total, pu.id as purchase_id, e.calle, e.numero, e.ciudad, e.cp
-        FROM users u
-        JOIN purchases pu ON u.id = pu.user_id
-        JOIN envios e ON pu.id = e.purchase_id
-        JOIN purchaseproducts pp ON pu.id = pp.purchase_id
-        JOIN products p ON pp.product_id = p.id
-        WHERE u.id = :userId;
-    `;
-        const purchases = yield connection_1.default.query(query, {
-            replacements: { userId },
-            type: sequelize_1.QueryTypes.SELECT,
-        });
-        return purchases;
+const getUserPurchases = (userId) => __awaiter(void 0, void 0, void 0, function* () {
+    const purchasesWithProducts = yield connection_1.default.query(`
+    SELECT 
+      pu.id AS purchase_id,
+      pu.total,
+      pu.purchase_date,
+      e.calle,
+      e.numero,
+      e.ciudad,
+      e.cp,
+      p.id AS product_id,
+      p.name AS product_name,
+      pp.cantidad
+    FROM purchases pu
+    JOIN envios e ON pu.id = e.purchase_id
+    JOIN purchaseproducts pp ON pu.id = pp.purchase_id
+    JOIN products p ON pp.product_id = p.id
+    WHERE pu.user_id = :userId
+    `, {
+        type: sequelize_1.QueryTypes.SELECT,
+        replacements: { userId },
     });
-}
+    const purchasesMap = {};
+    purchasesWithProducts.forEach((purchase) => {
+        const { purchase_id, total, purchase_date, calle, numero, ciudad, cp, product_id, product_name, cantidad, } = purchase;
+        if (!purchasesMap[purchase_id]) {
+            purchasesMap[purchase_id] = {
+                purchase_id,
+                total,
+                purchase_date,
+                calle,
+                numero,
+                ciudad,
+                cp,
+                products: [],
+            };
+        }
+        purchasesMap[purchase_id].products.push({ product_id, product_name, cantidad });
+    });
+    return Object.values(purchasesMap);
+});
 exports.getUserPurchases = getUserPurchases;

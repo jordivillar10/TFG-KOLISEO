@@ -111,19 +111,18 @@ export const handleSuccess = async (req: Request, res: Response) => {
 };
 
 export const getUserPurchasesController = async (req: Request, res: Response) => {
-    const userId = req.params.user_id;
-    console.log(userId);
-    
-    if (!userId || isNaN(Number(userId))) {
-        return res.status(400).json({ error: 'Invalid user ID' });
+    const userId = parseInt(req.params.user_id, 10);
+  
+    if (isNaN(userId)) {
+      return res.status(400).json({ error: 'Invalid user ID' });
     }
-
+  
     try {
-        const purchases = await getUserPurchases(Number(userId));
-        res.json(purchases);
+      const purchases = await getUserPurchases(userId);
+      res.json(purchases);
     } catch (error) {
-        console.error('Error fetching user purchases:', error);
-        res.status(500).json({ error: 'Internal server error' });
+      console.error('Error fetching user purchases:', error);
+      res.status(500).json({ error: 'Internal server error' });
     }
-};
+  };
 
