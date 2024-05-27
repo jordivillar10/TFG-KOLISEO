@@ -9,10 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getExercises = void 0;
+exports.saveTrain = exports.getExercises = void 0;
 const excercise_1 = require("../models/excercise");
 const getExercises = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listExercises = yield excercise_1.Exercise.findAll();
     res.json(listExercises);
 });
 exports.getExercises = getExercises;
+const saveTrain = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const ejerciciosSeleccionados = req.body;
+    console.log(ejerciciosSeleccionados);
+    console.log(ejerciciosSeleccionados.campos.repeticiones);
+});
+exports.saveTrain = saveTrain;

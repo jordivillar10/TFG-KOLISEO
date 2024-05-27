@@ -5,6 +5,7 @@ import { ExerciseService } from '../../../services/exercise.service';
 import { NgFor, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Exercise } from '../../../interfaces/exercises';
 
 
 
@@ -17,8 +18,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class RegistrarComponent {
 
-  exercises: any[] = [];
-  exercisesFiltrados: any[] = [];
+  exercises: Exercise[] = [];
+  exercisesFiltrados: Exercise[] = [];
   
   constructor(
     private _exerciseService: ExerciseService,
@@ -32,19 +33,14 @@ export class RegistrarComponent {
   }
 
   ngOnInit() {
- 
     this._exerciseService
       .getExercises()
-      .subscribe(data => { 
-        
+      .subscribe(data => {  
         this.exercises = data;
         this.exercisesFiltrados = data;
-        console.log("exercises->", this.exercises);
-
-        
+        console.log("exercises->", this.exercises);    
        //  console.log(typeof(this.productosPrueba[0].id)); 
       });
- 
   }
 
   miFuncion(): void {
@@ -84,19 +80,19 @@ export class RegistrarComponent {
       ejercicio.campos = []; // Inicializar el arreglo de campos si no existe
     }
     ;
-    ejercicio.campos.push({ repeticiones: '', kg: '' }); // Agregar un nuevo campo
+    ejercicio.campos.push({ repeticiones: '', peso: '' }); // Agregar un nuevo campo
   }
 
   borrarCampo(ejercicio: any) {
     if (ejercicio.campos && ejercicio.campos.length > 0) {
-      ejercicio.campos.pop(); // Eliminar el último campo
+      ejercicio.campos.pop(); // eliminar el ultimo campo
     }
   }
 
   guardarEntrenamiento() {
     // Hacer una solicitud HTTP para guardar los ejercicios seleccionados
-    this.http.post<any>('URL_de_tu_API', this.ejerciciosSeleccionados)
-      .subscribe(response => {
+    this._exerciseService.saveTrain(this.ejerciciosSeleccionados).subscribe
+    (response => {
         console.log('Entrenamiento guardado correctamente:', response);
         // Aquí podrías mostrar un mensaje de éxito o redirigir a otra página
       }, error => {
@@ -104,6 +100,7 @@ export class RegistrarComponent {
         // Aquí podrías mostrar un mensaje de error al usuario
       });
   }
+  
   terminoBusqueda: string = '';
   filtrarProductos() {
     const terminoNormalizado = this.normalizarTexto(this.terminoBusqueda);

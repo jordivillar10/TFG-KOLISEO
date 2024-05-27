@@ -27,6 +27,8 @@ const payments_1 = __importDefault(require("../routes/payments"));
 const envio_1 = require("./envio");
 const purchase_1 = require("./purchase");
 const purchaseproducts_1 = require("./purchaseproducts");
+const exercisesentrenamiento_1 = require("./exercisesentrenamiento");
+const entrenamientos_1 = require("./entrenamientos");
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -65,9 +67,11 @@ class Server {
                 yield product_2.Product.sync();
                 yield user_2.User.sync();
                 yield excercise_1.Exercise.sync();
-                yield envio_1.Envio.sync();
                 yield purchase_1.Purchase.sync();
+                yield envio_1.Envio.sync();
                 yield purchaseproducts_1.PurchaseProducts.sync();
+                yield entrenamientos_1.Entrenamiento.sync();
+                yield exercisesentrenamiento_1.ExercisesEntramiento.sync();
             }
             catch (error) {
                 console.error('No se pudo conectar a la base de datos:', error);

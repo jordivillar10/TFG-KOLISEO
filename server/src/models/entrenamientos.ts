@@ -1,16 +1,13 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../db/connection";
+import { Exercise } from './excercise';
 import { User } from "./user";
 
-export const Purchase = sequelize.define('purchase', {
+export const Entrenamiento = sequelize.define('entrenamiento',{
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
-    },
-    total: {
-        type: DataTypes.DECIMAL(10, 2),
-        
     },
     user_id: {
         type: DataTypes.INTEGER,
@@ -19,17 +16,17 @@ export const Purchase = sequelize.define('purchase', {
             key: 'id'
         }
     },
-    // product_id: {
-    //     type: DataTypes.INTEGER,
-    //     // allowNull: false,
-    //     references: {
-    //         model: Product,
-    //         key: 'id'
-    //     }
-    // },
-    cantidad: {
+    repeticiones: {
         type: DataTypes.INTEGER,
         // allowNull: false
     },
-    
-});
+    peso: {
+        type: DataTypes.FLOAT,
+        // allowNull: false
+    },
+    entrenamiento_date: {
+        type: DataTypes.DATE,
+        // allowNull: false,
+        defaultValue: DataTypes.NOW
+    }
+})

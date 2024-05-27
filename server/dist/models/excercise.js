@@ -20,5 +20,8 @@ exports.Exercise = connection_1.default.define('exercise', {
     },
     seleccionado: {
         type: sequelize_1.DataTypes.BOOLEAN
+    },
+    muscle_group_id: {
+        type: sequelize_1.DataTypes.INTEGER
     }
 });

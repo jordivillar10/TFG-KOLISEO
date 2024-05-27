@@ -15,6 +15,8 @@ export const Exercise = sequelize.define('exercise', {
     },
     seleccionado: {
         type: DataTypes.BOOLEAN
+    },
+    muscle_group_id: {
+        type: DataTypes.INTEGER
     }
-    
 });

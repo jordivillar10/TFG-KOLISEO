@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
+import { Exercise } from '../interfaces/exercises';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,9 @@ export class ExerciseService {
     // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
     // return this.http.get<Product[]>(`${this.myAppUri}${this.myApiUri}`, {headers: headers});
     return this.http.get<any[]>(`${this.myAppUri}${this.myApiUri}`)
+  }
+
+  saveTrain(ejerciciosSeleccionados: Exercise[]): Observable<any>{
+    return this.http.post(`${this.myAppUri}${this.myApiUri}/entrenamiento`, ejerciciosSeleccionados);
   }
 }
