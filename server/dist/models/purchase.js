@@ -35,4 +35,9 @@ exports.Purchase = connection_1.default.define('purchase', {
         type: sequelize_1.DataTypes.INTEGER,
         // allowNull: false
     },
+    purchase_date: {
+        type: sequelize_1.DataTypes.DATE,
+        // allowNull: false,
+        defaultValue: sequelize_1.DataTypes.NOW
+    }
 });

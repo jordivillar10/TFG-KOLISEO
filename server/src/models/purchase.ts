@@ -31,5 +31,9 @@ export const Purchase = sequelize.define('purchase', {
         type: DataTypes.INTEGER,
         // allowNull: false
     },
-    
+    purchase_date: {
+        type: DataTypes.DATE,
+        // allowNull: false,
+        defaultValue: DataTypes.NOW
+    }
 });
