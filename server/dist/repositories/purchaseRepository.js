@@ -28,11 +28,11 @@ const getUserPurchases = (userId) => __awaiter(void 0, void 0, void 0, function*
       p.id AS product_id,
       p.name AS product_name,
       pp.cantidad
-    FROM purchases pu
-    JOIN envios e ON pu.id = e.purchase_id
-    JOIN purchaseproducts pp ON pu.id = pp.purchase_id
-    JOIN products p ON pp.product_id = p.id
-    WHERE pu.user_id = :userId
+      FROM purchases pu
+      JOIN envios e ON pu.id = e.purchase_id
+      JOIN purchaseproducts pp ON pu.id = pp.purchase_id
+      JOIN products p ON pp.product_id = p.id
+      WHERE pu.user_id = :userId
     `, {
         type: sequelize_1.QueryTypes.SELECT,
         replacements: { userId },

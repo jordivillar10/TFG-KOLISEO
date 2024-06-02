@@ -3,12 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ExercisesEntramiento = void 0;
+exports.Serie = void 0;
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
 const entrenamientos_1 = require("./entrenamientos");
 const excercise_1 = require("./excercise");
-exports.ExercisesEntramiento = connection_1.default.define('exercisesentramiento', {
+exports.Serie = connection_1.default.define('serie', {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
@@ -16,7 +16,6 @@ exports.ExercisesEntramiento = connection_1.default.define('exercisesentramiento
     },
     entrenamiento_id: {
         type: sequelize_1.DataTypes.INTEGER,
-        // allowNull: false,
         references: {
             model: entrenamientos_1.Entrenamiento,
             key: 'id'
@@ -24,21 +23,15 @@ exports.ExercisesEntramiento = connection_1.default.define('exercisesentramiento
     },
     exercise_id: {
         type: sequelize_1.DataTypes.INTEGER,
-        // allowNull: false,
         references: {
             model: excercise_1.Exercise,
             key: 'id'
         }
     },
-    // serie_id: {
-    //     type: DataTypes.INTEGER,
-    //     references: {
-    //         model: Serie,
-    //         key: 'id'
-    //     }
-    // }
-    // n_exercises: {
-    //     type: DataTypes.INTEGER,
-    //     // allowNull: false
-    // }, 
+    repeticiones: {
+        type: sequelize_1.DataTypes.INTEGER
+    },
+    peso: {
+        type: sequelize_1.DataTypes.INTEGER
+    },
 });

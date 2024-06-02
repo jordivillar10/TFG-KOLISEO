@@ -13,8 +13,9 @@ import  routesPayment  from "../routes/payments";
 import { Envio } from './envio';
 import { Purchase } from './purchase';
 import { PurchaseProducts } from './purchaseproducts';
-import { ExercisesEntramiento } from './exercisesentrenamiento';
+// import { ExercisesEntramiento } from './exercisesentrenamiento';
 import { Entrenamiento } from './entrenamientos';
+import { Serie } from './serie';
 
 class Server {
     private app: Application;
@@ -65,7 +66,8 @@ class Server {
             await Envio.sync()
             await PurchaseProducts.sync()
             await Entrenamiento.sync()
-            await ExercisesEntramiento.sync()
+            // await ExercisesEntramiento.sync()
+            await Serie.sync()
         } catch (error) {
             console.error('No se pudo conectar a la base de datos:', error);
         }

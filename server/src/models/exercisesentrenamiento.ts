@@ -2,6 +2,7 @@ import { DataTypes } from "sequelize";
 import sequelize from "../db/connection";
 import { Entrenamiento } from "./entrenamientos";
 import { Exercise } from './excercise';
+import { Serie } from "./serie";
 
 export const ExercisesEntramiento = sequelize.define('exercisesentramiento', {
     id: {
@@ -25,6 +26,13 @@ export const ExercisesEntramiento = sequelize.define('exercisesentramiento', {
             key: 'id'
         }
     },
+    // serie_id: {
+    //     type: DataTypes.INTEGER,
+    //     references: {
+    //         model: Serie,
+    //         key: 'id'
+    //     }
+    // }
     // n_exercises: {
     //     type: DataTypes.INTEGER,
     //     // allowNull: false

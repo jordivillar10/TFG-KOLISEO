@@ -1,6 +1,9 @@
 export interface Entrenamiento {
     user_id: number,
-    repeticiones: number,
-    peso: number,
-    purchase_date: Date
+    entrenamiento_id: number;
+    name: string;
+    repeticiones: number;
+    peso: number;
+    entrenamiento_date: string;
+    total_series: number;
 }

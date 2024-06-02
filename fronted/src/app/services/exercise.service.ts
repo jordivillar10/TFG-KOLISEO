@@ -23,7 +23,8 @@ export class ExerciseService {
     return this.http.get<any[]>(`${this.myAppUri}${this.myApiUri}`)
   }
 
-  saveTrain(ejerciciosSeleccionados: Exercise[]): Observable<any>{
-    return this.http.post(`${this.myAppUri}${this.myApiUri}/entrenamiento`, ejerciciosSeleccionados);
+  saveTrain(usuario: string, ejerciciosSeleccionados: Exercise[]): Observable<any>{
+    const data = { usuario, ejerciciosSeleccionados };
+    return this.http.post(`${this.myAppUri}${this.myApiUri}/entrenamiento`, data);
   }
 }

@@ -1,0 +1,33 @@
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getUserWorkouts = void 0;
+const sequelize_1 = require("sequelize");
+const connection_1 = __importDefault(require("../db/connection"));
+const getUserWorkouts = (userId) => __awaiter(void 0, void 0, void 0, function* () {
+    const query = `
+    SELECT en.id AS entrenamiento_id, ex.name, s.repeticiones, s.peso, en.entrenamiento_date,
+    (SELECT COUNT(*) FROM series s2 WHERE s2.entrenamiento_id = en.id) AS total_series
+    FROM entrenamientos en 
+    JOIN series s ON en.id = s.entrenamiento_id
+    JOIN exercises ex ON ex.id = s.exercise_id
+    WHERE en.user_id = :userId
+    `;
+    const results = yield connection_1.default.query(query, {
+        type: sequelize_1.QueryTypes.SELECT,
+        replacements: { userId }
+    });
+    return results;
+});
+exports.getUserWorkouts = getUserWorkouts;

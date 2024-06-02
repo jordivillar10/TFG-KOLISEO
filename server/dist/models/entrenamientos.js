@@ -20,14 +20,6 @@ exports.Entrenamiento = connection_1.default.define('entrenamiento', {
             key: 'id'
         }
     },
-    repeticiones: {
-        type: sequelize_1.DataTypes.INTEGER,
-        // allowNull: false
-    },
-    peso: {
-        type: sequelize_1.DataTypes.FLOAT,
-        // allowNull: false
-    },
     entrenamiento_date: {
         type: sequelize_1.DataTypes.DATE,
         // allowNull: false,

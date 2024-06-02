@@ -16,14 +16,6 @@ export const Entrenamiento = sequelize.define('entrenamiento',{
             key: 'id'
         }
     },
-    repeticiones: {
-        type: DataTypes.INTEGER,
-        // allowNull: false
-    },
-    peso: {
-        type: DataTypes.FLOAT,
-        // allowNull: false
-    },
     entrenamiento_date: {
         type: DataTypes.DATE,
         // allowNull: false,

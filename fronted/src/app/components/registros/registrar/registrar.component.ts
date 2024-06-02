@@ -6,6 +6,8 @@ import { NgFor, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Exercise } from '../../../interfaces/exercises';
+import { Subscription } from 'rxjs';
+import { UsersService } from '../../../services/users.service';
 
 
 
@@ -17,14 +19,21 @@ import { Exercise } from '../../../interfaces/exercises';
   styleUrl: './registrar.component.css'
 })
 export class RegistrarComponent {
-
+  private userSubscription: Subscription;
+  user: any ;
   exercises: Exercise[] = [];
   exercisesFiltrados: Exercise[] = [];
-  
+  ejerciciosSeleccionados: Exercise[] = [];
   constructor(
     private _exerciseService: ExerciseService,
-    private http: HttpClient
-  ) {}
+    private http: HttpClient,
+    private userService: UsersService
+  ) {
+
+    this.userSubscription = this.userService.userData$.subscribe(user => {
+      this.user = user;
+    });
+  }
 
   @Output() cambioBusqueda = new EventEmitter<string>();
   onSearchInput(event: any){
@@ -40,8 +49,20 @@ export class RegistrarComponent {
         this.exercisesFiltrados = data;
         console.log("exercises->", this.exercises);    
        //  console.log(typeof(this.productosPrueba[0].id)); 
-      });
+       });
+    this.userSubscription = this.userService.userData$.subscribe(user => {
+      this.user = user;
+      // console.log(user);
+      
+    });
   }
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+  }
+
 
   miFuncion(): void {
     // Ejemplo: Devolver true si exercises no está vacío
@@ -52,7 +73,7 @@ export class RegistrarComponent {
       
     });
   }
-  ejerciciosSeleccionados: any[] = [];
+  // ejerciciosSeleccionados: Exercise[] = [];
 
   // Esta función se llama cuando se hace clic en un ejercicio
   mostrarEjercicio(ejercicio: any) {
@@ -75,12 +96,13 @@ export class RegistrarComponent {
   }
 
   // Función para agregar campos a un ejercicio
-  agregarCampos(ejercicio: any) {
+  agregarCampos(ejercicio: Exercise) {
     if (!ejercicio.campos) {
       ejercicio.campos = []; // Inicializar el arreglo de campos si no existe
     }
     ;
     ejercicio.campos.push({ repeticiones: '', peso: '' }); // Agregar un nuevo campo
+
   }
 
   borrarCampo(ejercicio: any) {
@@ -91,9 +113,10 @@ export class RegistrarComponent {
 
   guardarEntrenamiento() {
     // Hacer una solicitud HTTP para guardar los ejercicios seleccionados
-    this._exerciseService.saveTrain(this.ejerciciosSeleccionados).subscribe
+    this._exerciseService.saveTrain(this.user, this.ejerciciosSeleccionados).subscribe
     (response => {
         console.log('Entrenamiento guardado correctamente:', response);
+        
         // Aquí podrías mostrar un mensaje de éxito o redirigir a otra página
       }, error => {
         console.error('Error al guardar el entrenamiento:', error);

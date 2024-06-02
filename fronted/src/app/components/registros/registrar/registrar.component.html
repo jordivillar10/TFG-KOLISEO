@@ -73,9 +73,9 @@
                                 <div class="contenedorEjercio col-3 rounded-3 text-center">
                                     <img class="imgEjercicio" src="../../../../assets/img/bench-press-800.png" alt="">
                                 </div>
-                                <div class="col-8 d-flex  mt-2 px-3 description">
-                                    <h6 class="">{{ ejercicio.name }}</h6>
-                                    <div class="col-3 ">
+                                <div class="col-8 d-flex mt-2 px-3 description">
+                                    <div class="col-3">
+                                        <h6 >{{ ejercicio.name }}</h6>
                                         <button class="addSerie rounded-circle mt-2 mx-2 " (click)="agregarCampos(ejercicio)">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
@@ -87,11 +87,11 @@
                                             </svg>
                                         </button>
                                     </div>
-                                    <div class="col-6 d-block justify-content-center ">
+                                    <div class="col-8 d-block justify-content-center ">
                                         <div *ngFor="let campo of ejercicio.campos; let i = index" class="campo d-flex align-items-center mb-2 mt-2 border rounded-3 p-2">
                                             <p class="campos "> {{ i + 1 }}º</p>
-                                            Reps: <input class="campos ms-2 rounded-3" type="number" placeholder="Reps">
-                                            Kg: <input class="campos ms-2 rounded-3 " type="text" placeholder=" Kg">
+                                            Reps: <input class="campos ms-2 rounded-3" type="number" [(ngModel)]="campo.repeticiones" placeholder="Reps">
+                                            Kg: <input class="campos ms-2 rounded-3 " type="text" [(ngModel)]="campo.peso" placeholder=" Kg">
                                         </div>
                                     </div>
                                 </div>
