@@ -65,8 +65,8 @@ var createSession = function (req, res) { return __awaiter(void 0, void 0, void 
                         payment_method_types: ['card'],
                         line_items: lineItems,
                         mode: 'payment',
-                        success_url: 'http://localhost:4200/inicioTienda',
-                        cancel_url: 'http://localhost:4200/direccion-envio',
+                        success_url: 'http://koliseo.duckdns.org/inicioTienda',
+                        cancel_url: 'http://koliseo.duckdns.org/direccion-envio',
                     })];
             case 1:
                 session = _a.sent();

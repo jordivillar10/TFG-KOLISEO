@@ -6,6 +6,6 @@ const router = Router();
 
 router.post("/create-checkout-session", validateToken, createSession);
 router.get("/success", handleSuccess);
-router.get("/cancel", (req,res) => res.send('http://44.201.202.125/direccion-envio'));
+router.get("/cancel", (req,res) => res.send('http://koliseo.duckdns.org/direccion-envio'));
 
 export default router;

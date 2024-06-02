@@ -6,6 +6,6 @@ var validate_token_1 = require("./validate-token");
 var router = (0, express_1.Router)();
 router.post("/create-checkout-session", validate_token_1.default, payment_1.createSession);
 router.get('/direccion-envio', payment_1.newEnvio);
-router.get("/success", function (req, res) { return res.redirect('http://localhost:4200/tienda'); });
-router.get("/cancel", function (req, res) { return res.send('http://localhost:4200/direccion-envio'); });
+router.get("/success", function (req, res) { return res.redirect('http://koliseo.duckdns.org/tienda'); });
+router.get("/cancel", function (req, res) { return res.send('http://koliseo.duckdns.org/direccion-envio'); });
 exports.default = router;
