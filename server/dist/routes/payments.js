@@ -9,5 +9,5 @@ const validate_token_1 = __importDefault(require("./validate-token"));
 const router = (0, express_1.Router)();
 router.post("/create-checkout-session", validate_token_1.default, payment_1.createSession);
 router.get("/success", payment_1.handleSuccess);
-router.get("/cancel", (req, res) => res.send('http://koliseo.duckdns.org/direccion-envio'));
+router.get("/cancel", (req, res) => res.send('http://34.238.41.8:4200/direccion-envio'));
 exports.default = router;
