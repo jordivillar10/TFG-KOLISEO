@@ -52,11 +52,7 @@ class Server {
         //Parseo body   
         this.app.use(express.json());
         //Cors
-        this.app.use(cors({
-            origin: 'http://34.238.41.8',
-            optionsSuccessStatus: 200
-        }
-        ));
+        this.app.use(cors());
         //middleware de autenticación
         // this.app.use(this.authMiddleware);
     }

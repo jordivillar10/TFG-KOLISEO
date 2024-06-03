@@ -58,10 +58,7 @@ class Server {
         //Parseo body   
         this.app.use(express_1.default.json());
         //Cors
-        this.app.use((0, cors_1.default)({
-            origin: 'http://34.238.41.8',
-            optionsSuccessStatus: 200
-        }));
+        this.app.use((0, cors_1.default)());
         //middleware de autenticación
         // this.app.use(this.authMiddleware);
     }
