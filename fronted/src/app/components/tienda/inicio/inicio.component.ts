@@ -22,7 +22,7 @@ export class InicioComponent  {
     this.route.queryParams.subscribe(params => {
       const sessionId = params['session_id'];
       if (sessionId) {
-        this.http.get("http://54.160.201.163:3001/inicioTienda")
+        this.http.get("http://localhost:3001/inicioTienda")
           .subscribe(response => {
             console.log('Compra registrada con éxito:', response);
           }, error => {
