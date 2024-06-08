@@ -23,6 +23,8 @@ import { CompraComponent } from "./components/tienda/compra/compra.component";
 import { AuthGuard } from "./auth.guard";
 import { DireccionEnvioComponent } from "./components/tienda/direccion-envio/direccion-envio.component";
 import { CompraHechaComponent } from "./components/tienda/compra-hecha/compra-hecha.component";
+import { HomeEntrenamientosComponent } from "./components/entrenamientos/home-entrenamientos/home-entrenamientos.component";
+import { CalculadoraComponent } from "./components/calculadora/calculadora.component";
 
 
 const routes: Routes = [
@@ -41,7 +43,9 @@ const routes: Routes = [
     { path: 'historial', component: HistorialComponent},
     { path: 'inicioTienda', component: InicioComponent },
     { path: 'suplementos', component: SuplementosComponent },
+    { path: 'calculadora', component: CalculadoraComponent },
     { path: 'accesorios', component: AccesoriosComponent },
+    { path: 'home-entrenamientos', component: HomeEntrenamientosComponent },
     {path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 

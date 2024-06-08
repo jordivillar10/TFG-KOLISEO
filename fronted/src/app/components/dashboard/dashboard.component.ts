@@ -6,6 +6,7 @@ import { EntrenamientosComponent } from '../entrenamientos/entrenamientos.compon
 import { ActividadesComponent } from '../actividades/actividades.component';
 import { NgIf } from '@angular/common';
 import { UsersService } from '../../services/users.service';
+import { UserData } from '../../interfaces/userData';
 
 
 
@@ -18,13 +19,30 @@ import { UsersService } from '../../services/users.service';
 })
 export class DashboardComponent {
   userData: any;
+  mensajeBienvenida: boolean = false;
 
   constructor(private userService: UsersService) { }
 
   ngOnInit(): void {
     this.userService.userData$.subscribe(userData => {
       this.userData = userData;
+      if (this.userData) {
+        this.mostrarMensajeBienvenida();
+      }
     });
+  }
+
+  mostrarMensajeBienvenida(): void {
+    const hasSeenWelcomeMessage = localStorage.getItem('hasSeenWelcomeMessage');
+    console.log('hasSeenWelcomeMessage:', hasSeenWelcomeMessage); // Debugging log
+    if (!hasSeenWelcomeMessage) {
+      this.mensajeBienvenida = true;
+      localStorage.setItem('hasSeenWelcomeMessage', 'true');
+      console.log('Setting hasSeenWelcomeMessage to true'); // Debugging log
+    } else {
+      this.mensajeBienvenida = false;
+    }
+    console.log('showWelcomeMessage:', this.mensajeBienvenida); // Debugging log
   }
 }
   // constructor(private _productService: ProductService){}

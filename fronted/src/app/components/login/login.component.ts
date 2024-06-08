@@ -9,6 +9,7 @@ import { UsersService } from '../../services/users.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 import { ErrorService } from '../../services/error.service';
+import { UserData } from '../../interfaces/userData';
 
 
 @Component({
@@ -19,7 +20,6 @@ import { ErrorService } from '../../services/error.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  
   email: string = '';
   password: string = '';
   loading: boolean = false;
@@ -55,10 +55,18 @@ export class LoginComponent {
       next: (data: any) => {
         // console.log(data.user); // Verifica que data sea realmente el objeto que esperas
         this.userData = data;
-        // console.log("userdata->",this.userData.user.id);
-        this._userService.setUserData(data.user.id);
+        
+        // console.log("userdata->",this.userData.user.email);
+        this._userService.setUserData(data.user);
+        // this._userService.setUserData(this.userData.user.name);
+        // this._userService.setUserData(this.userData.user.email);
+
+        // this._userService.setUserData(data.user);
         // Accede a las propiedades del objeto directamente
         localStorage.setItem('token', data.token);
+        localStorage.setItem('userData', data.user.id);
+        localStorage.setItem('name', data.user.name);
+        localStorage.setItem('email', data.user.email);
         // localStorage.setItem('user', data.user.id);
         // localStorage.setItem('user', data.user);
 

@@ -17,6 +17,7 @@ const express_1 = __importDefault(require("express"));
 const product_1 = __importDefault(require("../routes/product"));
 const user_1 = __importDefault(require("../routes/user"));
 const exercise_1 = __importDefault(require("../routes/exercise"));
+const message_1 = __importDefault(require("../routes/message"));
 const product_2 = require("./product");
 const user_2 = require("./user");
 const cors_1 = __importDefault(require("cors"));
@@ -49,7 +50,7 @@ class Server {
             res.send('Bienvenido a la API');
         });
         this.app.use('/api/products', product_1.default);
-        this.app.use('/api/users', user_1.default);
+        this.app.use('/api/users', user_1.default, message_1.default);
         this.app.use('/api/exercises', exercise_1.default);
         this.app.use('/api/payment', payments_1.default);
     }

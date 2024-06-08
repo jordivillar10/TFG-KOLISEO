@@ -3,6 +3,14 @@
 html, body {
     height: 100%;
 }
+
+@font-face {
+    font-family: 'Geomanist';
+    src: url('src/fonts/Geomanist-BoldItalic.otf') format('opentype');
+    font-weight: bold;
+    font-style: italic;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 :root {

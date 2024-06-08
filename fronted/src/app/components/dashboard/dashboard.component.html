@@ -2,28 +2,49 @@
     <app-navbar></app-navbar>
     <div class="container text-center content-wrapper">
         <div class="text-light">
-            <h1 class="bienvenida">Bienvenido a <br> Koliseo Gym</h1>
-            <p class="slogan">COMIENZA TU CAMINO. CONVIERTETE EN TU MEJOR VERSIÓN</p>
-            <div *ngIf="userData">
-                <p>Nombre: {{ userData.user.name }}</p>
-                <p>Email: {{ userData.user.email }}</p>
+            <div *ngIf="mensajeBienvenida">
+                <p class="bienvenida">Bienvenido {{ userData.name }}</p>
+                <!-- <p>Email: {{ userData.email }}</p> -->
             </div>
+            <div *ngIf="!userData">
+                <h1 class="bienvenida">Bienvenido a <br> Koliseo Gym</h1>
+            </div>
+                <p class="slogan">COMIENZA TU CAMINO. CONVIERTETE EN TU MEJOR VERSIÓN</p>
         </div>
         
-        <div class="">
-            <button class="fw-bold" [routerLink]="['/signIn']" routerLinkActive="router-link-active" >ÚNETE A NOSOTROS</button>
+        <div *ngIf="!userData">
+            <div>
+                <button class="fw-bold" [routerLink]="['/signIn']" routerLinkActive="router-link-active" >ÚNETE A NOSOTROS</button>
+            </div>
+            <div>
+                <button class="fw-bold" [routerLink]="['/login']">INICIA SESIÓN</button>
+            </div>
         </div>
-        <div>
-            <button class="fw-bold" [routerLink]="['/login']">INICIA SESIÓN</button>
-        </div>
+        <section class="page-section clearfix d-flex justify-content-center align-items-center">
+            <div class="container">
+                <div class="intro">
+                    <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="../../../assets/img/fotoInicial.jpg" alt="..." />
+                    <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                        <h2 class="section-heading mb-4">
+                            <span class="section-heading-upper">Koliseo Store</span>
+                            <span class="section-heading-lower">Tienda Online </span>
+                        </h2>
+                        <p class="mb-3">Registra tus entrenamientos diarios y compra productos que te lleven a conseguir tu objetivo</p>
+                        <div class="intro-button mx-auto"><a class="btn btn-success btn-xl mt-2" routerLink="/tienda">Compra ya!</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </div>
-<div class="item" id="contact">
-    <app-contactanos></app-contactanos>
-</div>
+
+
 <div class="item" id="entrenamientos">
     <app-entrenamientos></app-entrenamientos>
 </div>
 <div class="item" id="actividades">
     <app-actividades></app-actividades>
+</div>
+<div class="item" id="contact">
+    <app-contactanos></app-contactanos>
 </div>

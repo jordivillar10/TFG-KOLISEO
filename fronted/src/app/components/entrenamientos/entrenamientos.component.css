@@ -1,0 +1,23 @@
+header {
+    background-color: rgb(0, 31, 0);
+}
+h1 {
+    text-transform: none; /* Asegúrate de que no transforme el texto */
+}
+.card-img-top {
+    height: 200px; /* Establece la altura deseada */
+    width: 100%;
+    object-fit: cover;
+}
+.card {
+    cursor: pointer;
+}
+
+.bg-featured-blog {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 15rem;
+  }

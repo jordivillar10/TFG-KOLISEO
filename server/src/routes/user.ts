@@ -12,4 +12,5 @@ router.get('/:user_id/purchases', getUserPurchasesController);
 router.get('/:user_id/workouts', getUserWorkoutsController);
 
 
+
 export default router;

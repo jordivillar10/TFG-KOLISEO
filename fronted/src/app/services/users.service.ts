@@ -12,7 +12,6 @@ export class UsersService {
   private myApiUri: string;
   private userDataSubject = new BehaviorSubject<any>(null);
   userData$ = this.userDataSubject.asObservable();
-  
 
   constructor(private http: HttpClient) { 
     this.myAppUri = environment.endpoint;
@@ -22,6 +21,7 @@ export class UsersService {
     if (userData) {
       this.userDataSubject.next(userData);
     }
+
   }
 
   signIn(user: User): Observable<any> {
@@ -36,6 +36,7 @@ export class UsersService {
   setUserData(userData: any) {
     this.userDataSubject.next(userData);
     localStorage.setItem('userData', JSON.stringify(userData));
+
   }
 
   clearUserData() {

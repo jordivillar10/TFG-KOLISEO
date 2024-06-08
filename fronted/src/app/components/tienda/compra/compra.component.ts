@@ -46,7 +46,7 @@ export class CompraComponent {
         console.error('Error fetching purchases:', error);
       });
     } else {
-      console.error('User is not logged in');
+      console.error('El usuario debe iniciar sesión');
     }
   }
   
