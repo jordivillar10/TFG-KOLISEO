@@ -1,6 +1,7 @@
 export interface Entrenamiento {
     user_id: number,
     entrenamiento_id: number;
+    exercise_id: number,
     name: string;
     repeticiones: number;
     peso: number;

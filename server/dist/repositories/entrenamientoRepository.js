@@ -17,7 +17,7 @@ const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
 const getUserWorkouts = (userId) => __awaiter(void 0, void 0, void 0, function* () {
     const query = `
-    SELECT en.id AS entrenamiento_id, ex.name, s.repeticiones, s.peso, en.entrenamiento_date,
+    SELECT en.id AS entrenamiento_id, ex.id , ex.name, s.repeticiones, s.peso, en.entrenamiento_date,
     (SELECT COUNT(*) FROM series s2 WHERE s2.entrenamiento_id = en.id) AS total_series
     FROM entrenamientos en 
     JOIN series s ON en.id = s.entrenamiento_id

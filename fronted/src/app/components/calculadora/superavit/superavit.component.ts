@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
   selector: 'app-superavit',
   standalone: true,
-  imports: [NavbarComponent, FormsModule, NgIf, ReactiveFormsModule],
+  imports: [NavbarComponent, FormsModule, NgIf, ReactiveFormsModule, FooterComponent],
   templateUrl: './superavit.component.html',
   styleUrl: './superavit.component.css'
 })

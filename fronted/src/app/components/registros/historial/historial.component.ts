@@ -8,7 +8,7 @@ interface ProcessedWorkout {
   entrenamiento_id: number;
   entrenamiento_date: Date;
   total_series: number;
-  ejercicios: { name: string; series: { repeticiones: number; peso: number }[] }[];
+  ejercicios: {id:number; name: string; series: { repeticiones: number; peso: number }[] }[];
 }
 
 @Component({
@@ -42,7 +42,7 @@ export class HistorialComponent {
     const workoutMap: { [key: number]: ProcessedWorkout } = {};
 
     data.forEach(item => {
-      const { entrenamiento_id, entrenamiento_date, total_series, name, repeticiones, peso } = item;
+      const { entrenamiento_id, entrenamiento_date, total_series, id, name, repeticiones, peso } = item;
 
       if (!workoutMap[entrenamiento_id]) {
         workoutMap[entrenamiento_id] = {
@@ -58,6 +58,7 @@ export class HistorialComponent {
         ejercicio.series.push({ repeticiones, peso });
       } else {
         workoutMap[entrenamiento_id].ejercicios.push({
+          id,
           name,
           series: [{ repeticiones, peso }]
         });

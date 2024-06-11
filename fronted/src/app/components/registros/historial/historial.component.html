@@ -36,7 +36,28 @@
                                                     <strong>{{ ejercicio.name }}</strong>
                                                 </div>
                                                 <div class="divImg border rounded-3 text-center"> 
-                                                    <img class="imgExercise" src="../../../../assets/img/bench-press-800.png" alt="">
+                                                    <img class="imgExercise" src="../../../../assets/img/pulldown.png" alt="" *ngIf="ejercicio.id == 1">
+                                                    <img class="imgExercise" src="../../../../assets/img/bench-press-800.png" alt="" *ngIf="ejercicio.id == 2">
+                                                    <img class="imgExercise" src="../../../../assets/img/t-bar-row-800.jpg" alt="" *ngIf="ejercicio.id == 4">
+                                                    <img class="imgExercise" src="../../../../assets/img/one-arm-pulldown-800.jpg" alt="" *ngIf="ejercicio.id == 5">
+                                                    <img class="imgExercise" src="../../../../assets/img/spider-curl-800.jpg" alt="" *ngIf="ejercicio.id == 6">
+                                                    <img class="imgExercise" src="../../../../assets/img/chest-press-800.jpg" alt="" *ngIf="ejercicio.id ==7">
+                                                    <img class="imgExercise" src="../../../../assets/img/incline-bench-press-800.jpg" alt="" *ngIf="ejercicio.id == 8">
+                                                    <img class="imgExercise" src="../../../../assets/img/incline-dumbbell-bench-press-800.jpg" alt="" *ngIf="ejercicio.id == 9">
+                                                    <img class="imgExercise" src="../../../../assets/img/inclinadosmith.jpg" alt="" *ngIf="ejercicio.id == 10">
+                                                    <img class="imgExercise" src="../../../../assets/img/cable-fly-800.jpg" alt="" *ngIf="ejercicio.id == 11">
+                                                    <img class="imgExercise" src="../../../../assets/img/pressfrances.jpg" alt="" *ngIf="ejercicio.id == 12">   
+                                                    <img class="imgExercise" src="../../../../assets/img/hack-squat-800.jpg" alt="" *ngIf="ejercicio.id == 13">
+                                                    <img class="imgExercise" src="../../../../assets/img/prensa.jpg" alt="" *ngIf="ejercicio.id == 14">
+                                                    <img class="imgExercise" src="../../../../assets/img/dumbbell-curl-800.jpg" alt="" *ngIf="ejercicio.id == 15">
+                                                    <img class="imgExercise" src="../../../../assets/img/hammer-curl-800.jpg" alt="" *ngIf="ejercicio.id == 16">
+                                                    <img class="imgExercise" src="../../../../assets/img/cable-overhead-tricep-extension-800.jpg" alt="" *ngIf="ejercicio.id == 17">
+                                                    <img class="imgExercise" src="../../../../assets/img/Trícepsunbrazo(polea).jpg" alt="" *ngIf="ejercicio.id == 18">
+                                                    <img class="imgExercise" src="../../../../assets/img/Parallel-Dip-Bar_600x600.jpg" alt="" *ngIf="ejercicio.id == 19">
+                                                    <img class="imgExercise" src="../../../../assets/img/lying-leg-curl-800.jpg" alt="" *ngIf="ejercicio.id == 20">
+                                                    <img class="imgExercise" src="../../../../assets/img/romanian-deadlift-800-removebg-preview.png" alt="" *ngIf="ejercicio.id == 21">
+                                                    <img class="imgExercise" src="../../../../assets/img/seated-leg-curl-800.jpg" alt="" *ngIf="ejercicio.id == 22">
+                                                    <img class="imgExercise" src="../../../../assets/img/dumbbell-deadlift-800.jpg" alt="" *ngIf="ejercicio.id == 23">
                                                 </div>
                                             </div>
                                             <div class="col-md-1"></div>
@@ -49,9 +70,6 @@
                                                         Repeticiones: {{ serie.repeticiones }} - Peso: {{ serie.peso }} kg
                                                     </li>
                                                 </ul>
-                                                <div class=" mb-3  p-2 fw-bold">
-                                                    Grupo Muscular: 
-                                                </div>
                                             </div>
                                         </div>
                                     </li>

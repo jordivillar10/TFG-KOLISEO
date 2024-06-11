@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { NgIf } from '@angular/common';
+import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
   selector: 'app-porcentaje-grasa',
   standalone: true,
-  imports: [NavbarComponent, FormsModule, NgIf, ReactiveFormsModule],
+  imports: [NavbarComponent, FormsModule, NgIf, ReactiveFormsModule, FooterComponent],
   templateUrl: './porcentaje-grasa.component.html',
   styleUrl: './porcentaje-grasa.component.css'
 })

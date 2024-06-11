@@ -110,7 +110,7 @@ export class DireccionEnvioComponent {
           }
       },
       (error) => {
-        this.toastrSvc.error('No se ha podido completar la compra', 'Añade productos al carrito')
+        this.toastrSvc.error('No se ha podido completar la compra', 'Error')
           console.error('Error al crear sesión de pago:', error);
       }
   );

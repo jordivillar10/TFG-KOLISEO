@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
   selector: 'app-rm-pesomuerto',
   standalone: true,
-  imports: [NavbarComponent, FormsModule, NgIf, ReactiveFormsModule],
+  imports: [NavbarComponent, FormsModule, NgIf, ReactiveFormsModule, FooterComponent],
   templateUrl: './rm-pesomuerto.component.html',
   styleUrl: './rm-pesomuerto.component.css'
 })

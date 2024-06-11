@@ -2,13 +2,14 @@ import { Component, NgModuleRef } from '@angular/core';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { FooterComponent } from '../../footer/footer.component';
 
 
 
 @Component({
   selector: 'app-deficit',
   standalone: true,
-  imports: [NavbarComponent, FormsModule, NgIf, ReactiveFormsModule],
+  imports: [NavbarComponent, FormsModule, NgIf, ReactiveFormsModule, FooterComponent],
   templateUrl: './deficit.component.html',
   styleUrl: './deficit.component.css'
 })

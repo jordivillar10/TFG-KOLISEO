@@ -2,11 +2,12 @@ import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NavbarComponent } from '../../navbar/navbar.component';
+import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
   selector: 'app-rm-pressbanca',
   standalone: true,
-  imports: [NavbarComponent, FormsModule, NgIf, ReactiveFormsModule],
+  imports: [NavbarComponent, FormsModule, NgIf, ReactiveFormsModule, FooterComponent],
   templateUrl: './rm-pressbanca.component.html',
   styleUrl: './rm-pressbanca.component.css'
 })
