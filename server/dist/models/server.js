@@ -13,6 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv").config();
+const https_1 = __importDefault(require("https"));
+const fs_1 = __importDefault(require("fs"));
 const express_1 = __importDefault(require("express"));
 const product_1 = __importDefault(require("../routes/product"));
 const user_1 = __importDefault(require("../routes/user"));
@@ -41,21 +43,21 @@ class Server {
         this.routes();
         this.dbConnect();
     }
-    // listen() {
-    //     const privateKey = fs.readFileSync('/etc/letsencrypt/live/koliseobackend.duckdns.org/privkey.pem', 'utf8');
-    //     const certificate = fs.readFileSync('/etc/letsencrypt/live/koliseobackend.duckdns.org/cert.pem', 'utf8');
-    //     const ca = fs.readFileSync('/etc/letsencrypt/live/koliseobackend.duckdns.org/fullchain.pem', 'utf8');
-    //     const credentials = { key: privateKey, cert: certificate, ca: ca };
-    //     const httpsServer = https.createServer(credentials, this.app);
-    //     httpsServer.listen(this.port, () => {
-    //         console.log('Aplicación corriendo en el puerto ' + this.port);
-    //     });
-    // }
     listen() {
-        this.app.listen(this.port, () => {
+        const privateKey = fs_1.default.readFileSync('/etc/letsencrypt/live/koliseobackend.duckdns.org/privkey.pem', 'utf8');
+        const certificate = fs_1.default.readFileSync('/etc/letsencrypt/live/koliseobackend.duckdns.org/cert.pem', 'utf8');
+        const ca = fs_1.default.readFileSync('/etc/letsencrypt/live/koliseobackend.duckdns.org/fullchain.pem', 'utf8');
+        const credentials = { key: privateKey, cert: certificate, ca: ca };
+        const httpsServer = https_1.default.createServer(credentials, this.app);
+        httpsServer.listen(this.port, () => {
             console.log('Aplicación corriendo en el puerto ' + this.port);
         });
     }
+    // listen() {
+    //     this.app.listen(this.port, () => {
+    //         console.log('Aplicación corriendo en el puerto ' + this.port);
+    //     })
+    // }
     routes() {
         this.app.get('/', (req, res) => {
             res.send('Bienvenido a la API');
