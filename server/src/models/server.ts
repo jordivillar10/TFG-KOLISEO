@@ -17,6 +17,7 @@ import { PurchaseProducts } from './purchaseproducts';
 // import { ExercisesEntramiento } from './exercisesentrenamiento';
 import { Entrenamiento } from './entrenamientos';
 import { Serie } from './serie';
+import "../mail";
 
 class Server {
     private app: Application;

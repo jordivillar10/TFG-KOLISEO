@@ -31,6 +31,7 @@ const purchaseproducts_1 = require("./purchaseproducts");
 // import { ExercisesEntramiento } from './exercisesentrenamiento';
 const entrenamientos_1 = require("./entrenamientos");
 const serie_1 = require("./serie");
+require("../mail");
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
