@@ -1,8 +1,8 @@
 import { ToastrService } from 'ngx-toastr';
 import { FiltradoService } from './../../../services/filtrado.service';
 import { productoCarrito } from './../../../interfaces/productoCarrito';
-import { NgFor } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
+import { Component, EventEmitter, NgModule, Output } from '@angular/core';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,7 +19,7 @@ register();
 @Component({
   selector: 'app-dashboard-tienda',
   standalone: true,
-  imports: [NgFor, NgbPaginationModule],
+  imports: [NgFor, NgbPaginationModule, NgIf],
   templateUrl: './dashboard-tienda.component.html',
   styleUrl: './dashboard-tienda.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

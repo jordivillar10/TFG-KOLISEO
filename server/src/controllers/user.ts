@@ -11,22 +11,23 @@ interface CustomRequest extends Request {
 
 export const newUser = async (req: Request, res: Response) => {
     try {
-    const { name, surname, email, password } = req.body;
+        const { name, surname, email, password } = req.body;
 
-    const newUser = await createUser({ name, surname, email, password });
-    
-    res.json({
-        msg: `Usuario ${email} creado exitosamente!`
-    })
-    return res.status(201).json(newUser);
+        const newUser = await createUser({ name, surname, email, password });
+
+        // Envía una única respuesta con un estado 201
+        return res.status(201).json({
+            msg: `Usuario ${email} creado exitosamente!`,
+            user: newUser
+        });
     } catch (error) {
         res.status(400).json({
             msg: 'Upss ocurrio un error',
             error
-        })
+        });
     }
+};
 
-}
 
 export const loginUser = async (req: Request, res: Response) => {
 

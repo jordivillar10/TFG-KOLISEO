@@ -1,7 +1,188 @@
-body {
-    font-family: 'Geomanist', sans-serif;
-    font-weight: bold;
+
+html {
+    padding: 0;
     margin: 0;
-    padding-top: 100px; 
-    letter-spacing: -0.5px;
+
+}
+body {
+    font-family: "Kanit", sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 96px; 
+    
+}
+h1{
+    font-weight: 600;
+    font-style: italic;
+}
+.contTItulo {
+    background-image: url(../../../assets/img/calculadorasHeader.jpg);
+    opacity: 0.9;
+    background-repeat: no-repeat;
+    background-size:cover; 
+    width: 100%;
+    height: 50vh;
+}
+
+.img-fluid {
+    width: 475px;
+    height: 400px;
+}
+
+.columnas {
+    display: flex;
+    flex-wrap: wrap;
+    height: 400px;
+}
+
+.contenedor {
+    min-height: 100vh;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+}
+.img-container, .img-container2, .img-container3, .img-container4, .img-container5, .img-container6,
+.img-container7, .img-container8, .img-container9, .img-container10, .img-container11, .img-container12{
+    cursor: pointer;
+}
+.img-container {
+    background-image: url(../../../assets/img/calCalorias.jpg);
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+
+}
+
+.img-container2 {
+    background-image: url(../../../assets/img/skinny.jpg);
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+
+}
+
+.img-container3{
+    background-image: url(../../../assets/img/dino.jpg);
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+
+}
+
+.img-container4{
+    background-image: url(../../../assets/img/alochol.jpg);
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+
+}
+.img-container5{
+    background-image: url(../../../assets/img/pesomuertorm.jpg);
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+
+}
+.img-container6{
+    background-image: url(../../../assets/img/crossfitmujer.jpg);
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+
+}
+.img-container7{
+    background-image: url(../../../assets/img/estirar.jpg);
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+
+}
+.img-container8{
+    background-image: url(../../../assets/img/nutricion.jpg);
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+
+}
+.img-container9{
+    background-image: url(../../../assets/img/dosiscreatina.jpg);
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+
+}
+.img-container10{
+    background-image: url(../../../assets/img/beberagua.jpg);
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+
+}
+.img-container11{
+    background-image: url(../../../assets/img/sentadilla.jpg);
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+
+}
+.img-container12{
+    background-image: url(../../../assets/img/pressbancapower.jpg);
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+
+}
+
+.img-container h3, .img-container2 h3, .img-container3 h3, .img-container4 h3, .img-container5 h3, .img-container6 h3,
+.img-container7 h3,  .img-container8 h3,.img-container9 h3, .img-container10 h3, .img-container11 h3, .img-container12 h3{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0); 
+    transition: background-color 0.2s; 
+}
+
+.img-container:hover .overlay,
+.img-container2:hover .overlay,
+.img-container3:hover .overlay,
+.img-container4:hover .overlay, 
+.img-container5:hover .overlay, 
+.img-container6:hover .overlay,
+.img-container7:hover .overlay,
+.img-container8:hover .overlay,
+.img-container9:hover .overlay,
+.img-container10:hover .overlay,
+.img-container11:hover .overlay,
+.img-container12:hover .overlay {
+    background-color: rgba(0, 0, 0, 0.732); 
+}
+
+h3 {
+    position: relative;
+
 }

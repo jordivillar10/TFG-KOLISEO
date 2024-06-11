@@ -1,3 +1,4 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 <swiper-container>
     <swiper-slide *ngFor="let image of sliderImages">
         <img [src]="image" >
@@ -7,9 +8,21 @@
     <h1 class="justify-content-center d-flex mb-5">PRODUCTOS</h1>
     <div class="row" >
         <div class=" col-6 col-md-4 col-sm-6 col-lg-3 justify-content-center  " *ngFor="let producto of productos">
-            <div class="card ">
+            <div class="card mb-3">
                 <div class="contenedorArt text-center">
-                    <img class="articulo" src="../../../../assets/img/protein.png" alt="">
+                    <img class="articulo" src="../../../../assets/img/protein.png" alt="" *ngIf="producto.id == 1">
+                    <img class="articulo" src="../../../../assets/img/proteinapolvo.jpg" alt="" *ngIf="producto.id == 2">
+                    <img class="articulo" src="../../../../assets/img/bccajpg.jpg" alt="" *ngIf="producto.id == 3">
+                    <img class="articulo" src="../../../../assets/img/creatina.jpg" alt="" *ngIf="producto.id == 4">
+                    <img class="articulo" src="../../../../assets/img/quemadorgrasa.jpg" alt="" *ngIf="producto.id == 5">
+                    <img class="articulo" src="../../../../assets/img/macuernasajustables.webp" alt="" *ngIf="producto.id == 6">
+                    <img class="articulo" src="../../../../assets/img/barraolimpica.jpg" alt="" *ngIf="producto.id == 7">
+                    <img class="articulo" src="../../../../assets/img/bancoajustable.jpg" alt="" *ngIf="producto.id == 8">
+                    <img class="articulo" src="../../../../assets/img/bandaresistencia.png" alt="" *ngIf="producto.id == 9">
+                    <img class="articulo p-2" src="../../../../assets/img/camisetadeportiva.jpg" alt="" *ngIf="producto.id == 10">
+                    <img class="articulo p-2" src="../../../../assets/img/Mallas-Fitness-Mujer.jpg" alt="" *ngIf="producto.id == 11">
+                    <img class="articulo p-2" src="../../../../assets/img/sudaderaconcapucha.jpg" alt="" *ngIf="producto.id == 12">
+                    <img class="articulo p-2" src="../../../../assets/img/pantalonescortos.jpg" alt="" *ngIf="producto.id == 13">
                 </div>
                 <div class="content" >
                     <div class="titlePrice row d-flex">                 
@@ -24,7 +37,10 @@
                         {{producto.description}}
                         
                     </p>
-                    <button (click)="addToCart(producto)"> <span>Añadir al carrito</span>
+                    <button (click)="addToCart(producto)"> <span class="d-none d-md-inline">Añadir al carrito</span>
+                        <span class="logitoCarrito d-inline d-md-none">
+                          <i class="bi bi-cart "></i>
+                        </span>
                     </button>
                 </div>
             </div>

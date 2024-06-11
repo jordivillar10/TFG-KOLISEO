@@ -1,0 +1,34 @@
+body {
+    font-family: "Kanit", sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 96px; 
+    color: black;
+}
+h1{
+    font-style: italic;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 50px;
+    letter-spacing: 0.1rem;
+}
+p {
+    font-size: 18px;
+}
+.btn {
+    background-color: black;
+}
+label {
+    font-style: italic;
+    font-weight: 800;
+}
+.contTItulo {
+    height: 200px;
+    background-color: rgb(77, 134, 21)
+}
+
+.conteneCalcu {
+    border-radius: 10px;
+    border: 2px solid;
+    border-color: black;
+}

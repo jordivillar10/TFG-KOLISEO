@@ -33,10 +33,12 @@ const getUserPurchases = (userId) => __awaiter(void 0, void 0, void 0, function*
       JOIN purchaseproducts pp ON pu.id = pp.purchase_id
       JOIN products p ON pp.product_id = p.id
       WHERE pu.user_id = :userId
+      ORDER BY pu.purchase_date DESC
     `, {
         type: sequelize_1.QueryTypes.SELECT,
         replacements: { userId },
     });
+    console.log("Purchases from DB:", purchasesWithProducts);
     const purchasesMap = {};
     purchasesWithProducts.forEach((purchase) => {
         const { purchase_id, total, purchase_date, calle, numero, ciudad, cp, product_id, product_name, cantidad, } = purchase;

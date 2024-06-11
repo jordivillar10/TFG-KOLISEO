@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <title>Document</title>
+</head>
+<app-navbar></app-navbar>
+<body>
+    <div class="contenedor">
+        <div class="contTItulo d-flex justify-content-center align-items-center text-center ">
+            <div class="mx-5 px-5">
+                <h1>Calculadora de calorías del alcohol</h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center  mt-5">
+                <div class="col-12 col-md-10 col-lg-6">
+                    <div class="text-center">
+                        <p>Esta calculadora tiene como único fin ofrecer <strong>una estimación</strong> de las calorías provenientes de bebidas alcohólicas. Siempre se aconseja consultar con un médico o profesional de la salud antes de realizar cambios en tu dieta o patrones de consumo de alcohol. No asumimos ninguna responsabilidad por los resultados o daños que puedan surgir del uso de esta herramienta.</p>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-12 d-flex">
+                            <div class="conteneCalcu d-flex justify-content-center  mb-4 p-5">
+                                <form class="row g-3" [formGroup]="calculadoraForm" (ngSubmit)="onSubmit()">
+                                    <div class="col-md-6">
+                                          <label for="cantidad" class="form-label">Cantidad consumida (ml)</label>
+                                          <input
+                                            type="text"
+                                            formControlName="cantidad"
+                                            name="cantidad-input"
+                                            class="form-control"
+                                            id="cantidad"
+                                            placeholder="Introduce cantidad consumida"
+                                            required
+                                          />
+                                          <span *ngIf="cantidad?.invalid && (cantidad?.dirty || cantidad?.touched)" style="color: red;">
+                                            El campo contiene caracteres inválidos
+                                        </span>
+                                      </div>
+                                    <div class="col-md-6">
+                                      <label for="graduacion" class="form-label">Graduación alcohólica (º)</label>
+                                      <input type="text" formControlName="graduacion" name="graduacion" class="form-control" id="graduacion" placeholder="Introduce graduación en grados" required/>
+                                      <span *ngIf="graduacion?.invalid && (graduacion?.dirty || graduacion?.touched)" style="color: red;">
+                                        El campo contiene caracteres inválidos
+                                      </span>
+                                    </div>
+                                    <button type="submit" class="btn text-light" [disabled]="calculadoraForm.invalid">Calcular</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div *ngIf="mostrarCalorias" class="alert alert-success mt-5" role="alert">
+                            Calorías generadas por el consumo de alcohol: {{ caloriasNecesarias }}
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

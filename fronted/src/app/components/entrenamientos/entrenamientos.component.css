@@ -11,6 +11,7 @@ h1 {
 }
 .card {
     cursor: pointer;
+    z-index: 0;
 }
 
 .bg-featured-blog {

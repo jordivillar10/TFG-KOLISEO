@@ -1,0 +1,74 @@
+.contenedorScroll {
+    margin-top: 100px;
+}
+body {
+    font-family: "Kanit", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.img-fluid {
+    height: 400px; /* Establece la altura deseada */
+    width: 100%;
+    object-fit: cover;
+}
+@media (max-width: 991.98px) {
+    #navbar-example3 {
+        position: relative;
+        top: 0;
+        width: 100%;
+        padding: 1rem 0;
+    }
+    .scrollspy-example-2 {
+        margin-top: 1rem; /* Adjust margin if needed */
+    }
+}
+
+@media (min-width: 992px) {
+    #navbar-example3 {
+        position: sticky;
+        top: 150px;
+        overflow-y: auto;
+    }
+}
+
+#navbar-example3 .nav-link {
+    border-right: 1px solid black;
+    border-radius: 0;
+}
+
+.nav-link {
+    color: black;
+}
+.nav-link.active {
+    background: none;
+    color: #0dff00 !important;  
+    border-right: 1px solid #0dff00;
+    border-radius: 0;
+}
+#navbar-example3 .nav-link {
+    border-right: 1px solid black; /* Default border color */
+    position: relative; /* To position the pseudo-element */
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -1px; /* Adjust this value if necessary */
+    width: 1px;
+    height: 100%;
+    background-color: #0dff00; /* Change to your desired border color */
+}
+
+h4 {
+    font-weight: 800;
+}
+
+h5  {
+    letter-spacing: 0.1rem;
+    font-weight: 900;
+}
+
+.contenedorLista {
+    flex-wrap: wrap;
+}

@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { FormsModule } from "@angular/forms";
 
@@ -25,6 +25,19 @@ import { DireccionEnvioComponent } from "./components/tienda/direccion-envio/dir
 import { CompraHechaComponent } from "./components/tienda/compra-hecha/compra-hecha.component";
 import { HomeEntrenamientosComponent } from "./components/entrenamientos/home-entrenamientos/home-entrenamientos.component";
 import { CalculadoraComponent } from "./components/calculadora/calculadora.component";
+import { DeficitComponent } from "./components/calculadora/deficit/deficit.component";
+import { AguaDiariaComponent } from "./components/calculadora/agua-diaria/agua-diaria.component";
+import { AlcoholComponent } from "./components/calculadora/alcohol/alcohol.component";
+import { CreatinaDosisComponent } from "./components/calculadora/creatina-dosis/creatina-dosis.component";
+import { HarrisBenedictComponent } from "./components/calculadora/harris-benedict/harris-benedict.component";
+import { ImcComponent } from "./components/calculadora/imc/imc.component";
+import { PasosComponent } from "./components/calculadora/pasos/pasos.component";
+import { PorcentajeGrasaComponent } from "./components/calculadora/porcentaje-grasa/porcentaje-grasa.component";
+import { RmPesomuertoComponent } from "./components/calculadora/rm-pesomuerto/rm-pesomuerto.component";
+import { RmPressbancaComponent } from "./components/calculadora/rm-pressbanca/rm-pressbanca.component";
+import { RmSentadillaComponent } from "./components/calculadora/rm-sentadilla/rm-sentadilla.component";
+import { SuperavitComponent } from "./components/calculadora/superavit/superavit.component";
+import { ContactanosComponent } from "./components/contactanos/contactanos.component";
 
 
 const routes: Routes = [
@@ -38,19 +51,31 @@ const routes: Routes = [
     { path: 'compra', component: CompraComponent },
     { path: 'compra-hecha', component: CompraHechaComponent },
     { path: 'registros', component: RegistrosComponent},
-    { path: 'registrarTrain', component: RegistrarComponent},
-    { path: 'estadisticas', component: EstadisticasComponent},
-    { path: 'historial', component: HistorialComponent},
+    { path: 'registrarTrain', component: RegistrarComponent, canActivate: [AuthGuard]},
+    { path: 'estadisticas', component: EstadisticasComponent, canActivate: [AuthGuard]},
+    { path: 'historial', component: HistorialComponent, canActivate: [AuthGuard]},
     { path: 'inicioTienda', component: InicioComponent },
     { path: 'suplementos', component: SuplementosComponent },
     { path: 'calculadora', component: CalculadoraComponent },
-    { path: 'accesorios', component: AccesoriosComponent },
+    { path: 'calculadora/deficit', component: DeficitComponent },
+    { path: 'calculadora/agua-diaria', component: AguaDiariaComponent },
+    { path: 'calculadora/alcohol', component: AlcoholComponent },
+    { path: 'calculadora/creatina', component: CreatinaDosisComponent },
+    { path: 'calculadora/harris-benedict', component: HarrisBenedictComponent },
+    { path: 'calculadora/imc', component: ImcComponent },
+    { path: 'calculadora/pasos', component: PasosComponent },
+    { path: 'calculadora/porcentaje-grasa', component: PorcentajeGrasaComponent },
+    { path: 'calculadora/rm-pesomuerto', component: RmPesomuertoComponent },
+    { path: 'calculadora/rm-pressbanca', component: RmPressbancaComponent },
+    { path: 'calculadora/rm-sentadilla', component: RmSentadillaComponent },
+    { path: 'calculadora/superavit', component: SuperavitComponent },
+    { path: 'calculadora/accesorios', component: AccesoriosComponent },
     { path: 'home-entrenamientos', component: HomeEntrenamientosComponent },
     {path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes), HttpClientModule, FormsModule],
+  imports: [ RouterModule.forRoot(routes), HttpClientModule, FormsModule, ReactiveFormsModule],
   exports: [ RouterModule ]
 })
 

@@ -21,10 +21,11 @@ const newUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name, surname, email, password } = req.body;
         const newUser = yield (0, userRepository_1.createUser)({ name, surname, email, password });
-        res.json({
-            msg: `Usuario ${email} creado exitosamente!`
+        // Envía una única respuesta con un estado 201
+        return res.status(201).json({
+            msg: `Usuario ${email} creado exitosamente!`,
+            user: newUser
         });
-        return res.status(201).json(newUser);
     }
     catch (error) {
         res.status(400).json({

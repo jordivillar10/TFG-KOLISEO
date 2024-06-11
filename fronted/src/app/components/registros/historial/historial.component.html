@@ -6,57 +6,56 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container ">
+    <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="titulo text-center ">
+                <div class="titulo text-center">
                     <h1>Historial de Entrenamientos</h1>
                 </div>
-                <div class="col-12 ">
+                <div class="col-12">
                     <div *ngIf="workouts.length; else noWorkouts">
                         <div class="cardWorkout col-12 border-dark rounded-5 p-4 text-light mb-2"  *ngFor="let workout of workouts">
-                          <div class="col-12 d-flex">
-                            <div class="col-6 d-flex"> 
+                          <div class="col-md-12 d-flex">
+                            <div class="col-md-6 d-flex"> 
                                 <h3>Entrenamiento {{ workout.entrenamiento_id }} </h3>
                                 <div class="d-flex justify-content-center align-items-center ms-3">
                                     <p >Series Totales: <strong>{{ workout.total_series }}</strong></p>
-
                                 </div>
-                              </div>
-                              <div class="col-6 d-flex justify-content-end">
+                            </div>
+                            <div class="col-md-6 d-flex justify-content-end">
                                 <h3>Fecha: {{ formatDate(workout.entrenamiento_date) }}</h3>
-                              </div>
+                            </div>
                           </div>
-                          <div class="col-12  d-flex border-dark rounded-3">
-                            <div class="col-12">
+                          <div class="col-md-12  d-flex border-dark rounded-3">
+                            <div class="col-md-12">
                                 <ul>
                                     <li class="nombreEjercicio" *ngFor="let ejercicio of workout.ejercicios">
-                                    <div class="  col-12 d-flex  rounded-5 mb-5 mt-2">
-                                        <div class="cardExercise col-3 d-block justify-content-center align-items-center p-5  rounded-5 text-dark">
-                                            <div class="text-center">
-                                                <strong>{{ ejercicio.name }}</strong>
-                                            </div>
-                                            <div class="divImg border rounded-3 text-center"> 
-                                                <img class="imgExercise" src="../../../../assets/img/bench-press-800.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="col-1"></div>
-                                        <div class="cardExercise  col-8 d-flex p-3 rounded-5 text-dark">
-                                            <ul class="col-9 ">
-                                                <li class="ListaSerie d-flex rounded-3 p-2 mb-2" *ngFor="let serie of ejercicio.series; let i = index">
-                                                <div class="ms-2">
-                                                    <p class=fw-bold> {{ i + 1 }}º Serie:</p>
+                                        <div class="col-md-12 d-flex  rounded-5 mb-5 mt-2">
+                                            <div class="cardExercise col-md-3 d-block justify-content-center align-items-center p-5  rounded-5 text-dark">
+                                                <div class="text-center">
+                                                    <strong>{{ ejercicio.name }}</strong>
                                                 </div>
-                                                  Repeticiones: {{ serie.repeticiones }} - Peso: {{ serie.peso }} kg
-                                                </li>
-                                              </ul>
-                                              <div class=" mb-3  p-2 fw-bold">
-                                                Grupo Muscular: 
+                                                <div class="divImg border rounded-3 text-center"> 
+                                                    <img class="imgExercise" src="../../../../assets/img/bench-press-800.png" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1"></div>
+                                            <div class="cardExercise  col-md-8 d-flex p-3 rounded-5 text-dark">
+                                                <ul class="col-md-9 ">
+                                                    <li class="ListaSerie d-flex rounded-3 p-2 mb-2" *ngFor="let serie of ejercicio.series; let i = index">
+                                                        <div class="ms-2">
+                                                            <p class=fw-bold> {{ i + 1 }}º Serie:</p>
+                                                        </div>
+                                                        Repeticiones: {{ serie.repeticiones }} - Peso: {{ serie.peso }} kg
+                                                    </li>
+                                                </ul>
+                                                <div class=" mb-3  p-2 fw-bold">
+                                                    Grupo Muscular: 
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                     </li>
-                                  </ul>
+                                </ul>
                             </div>
                           </div>
                         </div>
@@ -68,9 +67,5 @@
             </div>
         </div>
     </div>
-    
-      
-      
-      
 </body>
 </html>

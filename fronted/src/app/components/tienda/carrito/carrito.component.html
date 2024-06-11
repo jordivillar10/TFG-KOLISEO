@@ -25,7 +25,19 @@
           <tr *ngFor="let producto of carrito">
             <td>  {{ producto.id }}</td>
             <td class="contenedorArt text-center">
-                <img class="articulo" src="../../../../assets/img/protein.png" alt="">
+                <img class="articulo" src="../../../../assets/img/protein.png" alt="" *ngIf="producto.id == 1">
+                <img class="articulo" src="../../../../assets/img/proteinapolvo.jpg" alt="" *ngIf="producto.id == 2">
+                    <img class="articulo" src="../../../../assets/img/bccajpg.jpg" alt="" *ngIf="producto.id == 3">
+                    <img class="articulo" src="../../../../assets/img/creatina.jpg" alt="" *ngIf="producto.id == 4">
+                    <img class="articulo" src="../../../../assets/img/quemadorgrasa.jpg" alt="" *ngIf="producto.id == 5">
+                    <img class="articulo" src="../../../../assets/img/macuernasajustables.webp" alt="" *ngIf="producto.id == 6">
+                    <img class="articulo" src="../../../../assets/img/barraolimpica.jpg" alt="" *ngIf="producto.id == 7">
+                    <img class="articulo" src="../../../../assets/img/bancoajustable.jpg" alt="" *ngIf="producto.id == 8">
+                    <img class="articulo" src="../../../../assets/img/bandaresistencia.png" alt="" *ngIf="producto.id == 9">
+                    <img class="articulo p-2" src="../../../../assets/img/camisetadeportiva.jpg" alt="" *ngIf="producto.id == 10">
+                    <img class="articulo p-2" src="../../../../assets/img/Mallas-Fitness-Mujer.jpg" alt="" *ngIf="producto.id == 11">
+                    <img class="articulo p-2" src="../../../../assets/img/sudaderaconcapucha.jpg" alt="" *ngIf="producto.id == 12">
+                    <img class="articulo p-2" src="../../../../assets/img/pantalonescortos.jpg" alt="" *ngIf="producto.id == 13">
             </td>
             <td>  {{ producto.name }}</td>
             <td>

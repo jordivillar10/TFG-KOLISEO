@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, NgModule } from '@angular/core';
 import { HistorialComponent } from '../historial/historial.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ExerciseService } from '../../../services/exercise.service';
 import { NgFor, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { Exercise } from '../../../interfaces/exercises';
 import { Subscription } from 'rxjs';
 import { UsersService } from '../../../services/users.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -26,8 +27,9 @@ export class RegistrarComponent {
   ejerciciosSeleccionados: Exercise[] = [];
   constructor(
     private _exerciseService: ExerciseService,
-    private http: HttpClient,
-    private userService: UsersService
+    private userService: UsersService,
+    private toast: ToastrService,
+    private router: Router
   ) {
 
     this.userSubscription = this.userService.userData$.subscribe(user => {
@@ -112,13 +114,17 @@ export class RegistrarComponent {
   }
 
   guardarEntrenamiento() {
+    if (!this.userService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+      return;
+    }
     // Hacer una solicitud HTTP para guardar los ejercicios seleccionados
-    this._exerciseService.saveTrain(this.user, this.ejerciciosSeleccionados).subscribe
-    (response => {
-        console.log('Entrenamiento guardado correctamente:', response);
-        
+    this._exerciseService.saveTrain(this.user, this.ejerciciosSeleccionados).subscribe(
+      response => {
+        this.toast.success('Entrenamiento Guardado correctamente', 'Éxito');
         // Aquí podrías mostrar un mensaje de éxito o redirigir a otra página
       }, error => {
+        this.toast.error('Error al guardar el entrenamiento', 'error');
         console.error('Error al guardar el entrenamiento:', error);
         // Aquí podrías mostrar un mensaje de error al usuario
       });

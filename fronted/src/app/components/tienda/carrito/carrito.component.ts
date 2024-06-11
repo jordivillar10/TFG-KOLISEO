@@ -1,5 +1,5 @@
 import { UsersService } from './../../../services/users.service';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component, TemplateRef } from '@angular/core';
 import { productoCarrito } from '../../../interfaces/productoCarrito';
 import { CarritoService } from '../../../services/carrito.service';
@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-carrito',
   standalone: true,
-  imports: [NgFor, TiendaComponent, RouterLink],
+  imports: [NgFor, TiendaComponent, RouterLink, NgIf],
   templateUrl: './carrito.component.html',
   styleUrl: './carrito.component.css'
 })
@@ -24,20 +24,6 @@ export class CarritoComponent  {
   constructor(private carritoService: CarritoService, private paymentService: PaymentService, 
     private userService: UsersService, private router: Router, private toastr: ToastrService) {}
 
-  // iniciarPago() {
-  //   this.paymentService.createCheckoutSession(envioCompra).subscribe(
-  //     (response) => {
-  //       // Manejar la respuesta del backend, por ejemplo, redireccionar al usuario a la página de pago
-  //       console.log('Sesión de pago creada:', response);
-  //     },
-  //     (error) => {
-  //       // Manejar errores
-  //       console.error('Error al crear sesión de pago:', error);
-  //     }
-  //   );
-  // }
-  
-
   ngOnInit() {
     this.carritoSubscription = this.carritoService.carrito$.subscribe(carrito => {
       this.carrito = carrito;
@@ -48,17 +34,6 @@ export class CarritoComponent  {
     this.carritoSubscription.unsubscribe();
   }
 
-  // incrementarCantidad(articulo: any) {
-  //   articulo.cantidad++;
-    
-  // }
-  
-  // decrementarCantidad(articulo: any) {
-  //   if (articulo.cantidad > 1) {
-  //     articulo.cantidad--;
-  //   }
-  // }
-
   modificarCantidad(articulo: productoCarrito, nuevaCantidad: number) {
     if (nuevaCantidad >= 1 && nuevaCantidad <= 10) {
       articulo.cantidad = nuevaCantidad; // Modificar la cantidad del artículo
@@ -68,10 +43,8 @@ export class CarritoComponent  {
       this.carritoService.modificarUds(articulo); // Llamar al método del servicio para actualizar el carrito
       this.toastr.warning('La cantidad máxima permitida es 10.', 'Advertencia');
     }
-}
+  }
 
-
-  
   eliminarArticuloDelCarrito(articulo: productoCarrito) {
     this.carritoService.eliminarArticuloDelCarrito(articulo);
   }

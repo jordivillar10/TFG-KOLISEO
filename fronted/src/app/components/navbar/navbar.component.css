@@ -52,4 +52,6 @@ svg{
     color: rgb(82, 249, 87);
 }
 
-  
+.dropdown-item {
+    cursor: pointer;
+}

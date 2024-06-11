@@ -8,79 +8,83 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="navbarColor04" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarColor04">
-        <form class="d-flex m-auto">
-            <input class="form-control me-sm-2" type="search" placeholder="Buscar" size="80px">
-          </form>
-        <ul class="navbar-nav  me-auto ">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Inicia Sesión
-              <span class="visually-hidden">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/signIn">Registrarse</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/compra">Mis compras</a>
-          </li>
-          <!-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mis Compras</a>
-            <div class="dropdown-menu">
-              <!-- <a class="dropdown-item" href="#">Mis compras</a> -->
-              <!-- <a class="dropdown-item" href="#">Mi cuenta</a> -->
-              <!-- <div class="dropdown-divider"></div> -->
-              <!-- <a class="dropdown-item" (click)="logOut()">Log Out</a>
-            </div>
-          </li> -->
-          <li class="nav-item me-3 ">
-            <ng-template #content let-offcanvas>
-              <div class="offcanvas-header">
-                <h4 class="offcanvas-title">Tu carrito</h4>
-                <button type="button" class="btn-close" aria-label="Close" (click)="toggleCarrito(); offcanvas.dismiss('Cross click')"></button>
-              </div>
-              <div class="offcanvas-body">
-                <ul>
-                  <li *ngFor="let producto of carrito" class=" mb-3" style=" list-style: none;">
-                    <div class="container text-center">
-                      <div class="row border border-dark rounded-3 d-flex justify-content-center align-items-center">
-                        <div class="col-12 d-block">
-                          <div class="border-bottom ">
-                            <img class="imgCarrito" src="../../../../assets/img/protein.png" alt="" style="width: 60px;
-                            height: 60px;">
-                          </div>
-                          <div>
-                            Producto: {{ producto.name }}
-                          </div>
-                          <div>
-                            Cantidad: {{ producto.cantidad }}
-                          </div>
-                          <div>
-                            Precio: {{ formatPrice(producto.price, producto.cantidad) }}€
+      <div class="row">
+        <div class="collapse navbar-collapse col-12 d-flex justify-content-end" id="navbarColor04">
+          <ul class="navbar-nav   me-auto ">
+            <div class="col-12 d-flex justify-content-end">
+              <li *ngIf="!tokenExists" class="nav-item">
+                <a class="nav-link" routerLink="/login">Inicia Sesión
+                  <span class="visually-hidden">(current)</span>
+                </a>
+              </li>
+              <li *ngIf="!tokenExists" class="nav-item">
+                <a class="nav-link" routerLink="/signIn">Registrarse</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/compra">Mis compras</a>
+              </li>
+           
+              <li class="nav-item me-3 ">
+                <ng-template #content let-offcanvas>
+                  <div class="offcanvas-header">
+                    <h4 class="offcanvas-title">Tu carrito</h4>
+                    <button type="button" class="btn-close" aria-label="Close" (click)="toggleCarrito(); offcanvas.dismiss('Cross click')"></button>
+                  </div>
+                  <div class="offcanvas-body">
+                    <ul>
+                      <li *ngFor="let producto of carrito" class=" mb-3" style=" list-style: none;">
+                        <div class="container text-center">
+                          <div class="row border border-dark rounded-3 d-flex justify-content-center align-items-center">
+                            <div class="col-12 d-block">
+                              <div class="border-bottom ">
+                                <img class="imgCarrito" src="../../../../assets/img/protein.png" alt="" *ngIf="producto.id ==1" style="width: 60px">
+                                <img class="articulo" src="../../../../assets/img/proteinapolvo.jpg" alt="" *ngIf="producto.id == 2" style="width: 60px">
+                                <img class="articulo" src="../../../../assets/img/bccajpg.jpg" alt="" *ngIf="producto.id == 3" style="width: 60px">
+                                <img class="articulo" src="../../../../assets/img/creatina.jpg" alt="" *ngIf="producto.id == 4" style="width: 60px">
+                                <img class="articulo" src="../../../../assets/img/quemadorgrasa.jpg" alt="" *ngIf="producto.id == 5" style="width: 60px">
+                                <img class="articulo" src="../../../../assets/img/macuernasajustables.webp" alt="" *ngIf="producto.id == 6" style="width: 60px">
+                                <img class="articulo" src="../../../../assets/img/barraolimpica.jpg" alt="" *ngIf="producto.id == 7" style="width: 60px">
+                                <img class="articulo" src="../../../../assets/img/bancoajustable.jpg" alt="" *ngIf="producto.id == 8" style="width: 60px">
+                                <img class="articulo" src="../../../../assets/img/bandaresistencia.png" alt="" *ngIf="producto.id == 9" style="width: 60px">
+                                <img class="articulo p-2" src="../../../../assets/img/camisetadeportiva.jpg" alt="" *ngIf="producto.id == 10" style="width: 60px">
+                                <img class="articulo p-2" src="../../../../assets/img/Mallas-Fitness-Mujer.jpg" alt="" *ngIf="producto.id == 11" style="width: 60px">
+                                <img class="articulo p-2" src="../../../../assets/img/sudaderaconcapucha.jpg" alt="" *ngIf="producto.id == 12" style="width: 60px">
+                                <img class="articulo p-2" src="../../../../assets/img/pantalonescortos.jpg" alt="" *ngIf="producto.id == 13" style="width: 60px">
+                              </div>
+                              <div>
+                                Producto: {{ producto.name }}
+                              </div>
+                              <div>
+                                Cantidad: {{ producto.cantidad }}
+                              </div>
+                              <div>
+                                Precio: {{ formatPrice(producto.price, producto.cantidad) }}€
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </li>
+                    </ul>
+                    <div class="text-end">
+                      <button class="btn btn-success me-3" routerLink="/carrito">
+                        Ir al carrito
+                      </button>
+                      <button class="btn btn-danger" (click)="vaciarCarrito()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                          <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                        </svg>
+                      </button>
                     </div>
-                  </li>
-                </ul>
-                <div class="text-end">
-                  <button class="btn btn-success me-3" routerLink="/carrito">
-                    Ir al carrito
-                  </button>
-                  <button class="btn btn-danger" (click)="vaciarCarrito()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                      <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </ng-template>            
-            <a class="nav-link  btn-outline-success mb-2 me-2" (click)="openEnd(content)" >
-                <img class="logoCarrito m-auto" src="../../../../assets/img/carritoLogo.png" alt="">
-                <span class="contador text-dark  bg-danger">{{ contadorCarrito }}</span>
-            </a>
-          </li>
-        </ul>
+                  </div>
+                </ng-template>            
+                <a class="nav-link  btn-outline-success mb-2 me-2" (click)="openEnd(content)" >
+                    <img class="logoCarrito m-auto" src="../../../../assets/img/carritoLogo.png" alt="">
+                    <span class="contador text-dark  bg-danger">{{ contadorCarrito }}</span>
+                </a>
+              </li>
+            </div>
+          </ul>
+        </div>
       </div>
     </div>
 

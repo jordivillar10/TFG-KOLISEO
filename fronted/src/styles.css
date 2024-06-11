@@ -3,16 +3,11 @@
 html, body {
     height: 100%;
 }
-
-@font-face {
-    font-family: 'Geomanist';
-    src: url('src/fonts/Geomanist-BoldItalic.otf') format('opentype');
-    font-weight: bold;
-    font-style: italic;
+h1,h2,h3,h4,h5,h6 {
+    text-transform: none;
 }
-
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0 }
 :root {
 
     --primary: #19AFFF;

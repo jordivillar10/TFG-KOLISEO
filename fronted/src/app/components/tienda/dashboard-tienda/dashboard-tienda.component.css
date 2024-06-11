@@ -54,6 +54,11 @@
     width: 100%;
     transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
     background-color: #000;
+    background-repeat: no-repeat;
+    height: auto;
+    left: 50%;
+    right: 50%;
+    min-height: 150px;
   }
 
   .card::before {
@@ -183,13 +188,24 @@
 }
 
 @media (max-width: 1024px) {
-    button  {
-        display: none;
+    .heading {
+      display: none;
     }
+    .contenedorArt {
+      min-height: 100px;
+      background-size: cover;
+    }
+    .articulo {
+      width: 100%;
+   }
 }
 
 .titlePrice{
   width:100%
+}
+
+.logitoCarrito i {
+  font-size: 1rem;
 }
 
 

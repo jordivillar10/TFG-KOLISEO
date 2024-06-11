@@ -60,7 +60,19 @@
                   <div class="row  ">
                       <div class="col-12 d-flex">
                           <div class="col-3 bg-light d-flex rounded-start align-items-center">
-                              <img src="../../../../assets/img/protein.png" class="card-img" alt="...">
+                              <img src="../../../../assets/img/protein.png" class="card-img" alt="..." *ngIf="producto.id == 1">
+                              <img class="card-img" src="../../../../assets/img/proteinapolvo.jpg" alt="" *ngIf="producto.id == 2">
+                              <img class="card-img" src="../../../../assets/img/bccajpg.jpg" alt="" *ngIf="producto.id == 3">
+                              <img class="card-img" src="../../../../assets/img/creatina.jpg" alt="" *ngIf="producto.id == 4">
+                              <img class="card-img" src="../../../../assets/img/quemadorgrasa.jpg" alt="" *ngIf="producto.id == 5">
+                              <img class="card-img" src="../../../../assets/img/macuernasajustables.webp" alt="" *ngIf="producto.id == 6">
+                              <img class="card-img" src="../../../../assets/img/barraolimpica.jpg" alt="" *ngIf="producto.id == 7">
+                              <img class="card-img" src="../../../../assets/img/bancoajustable.jpg" alt="" *ngIf="producto.id == 8">
+                              <img class="card-img" src="../../../../assets/img/bandaresistencia.png" alt="" *ngIf="producto.id == 9">
+                              <img class="card-img p-2" src="../../../../assets/img/camisetadeportiva.jpg" alt="" *ngIf="producto.id == 10">
+                              <img class="card-img p-2" src="../../../../assets/img/Mallas-Fitness-Mujer.jpg" alt="" *ngIf="producto.id == 11">
+                              <img class="card-img p-2" src="../../../../assets/img/sudaderaconcapucha.jpg" alt="" *ngIf="producto.id == 12">
+                              <img class="card-img p-2" src="../../../../assets/img/pantalonescortos.jpg" alt="" *ngIf="producto.id == 13">
                           </div>
                           <div class="col-6 card-body  ">
                             <p class="card-title fw-bold" style="font-size: 18px;">Producto: {{ producto.name }}</p>

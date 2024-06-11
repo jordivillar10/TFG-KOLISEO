@@ -7,13 +7,14 @@ import { ActividadesComponent } from '../actividades/actividades.component';
 import { NgIf } from '@angular/common';
 import { UsersService } from '../../services/users.service';
 import { UserData } from '../../interfaces/userData';
+import { FooterComponent } from '../footer/footer.component';
 
 
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [NavbarComponent, RouterLink, ContactanosComponent, EntrenamientosComponent, ActividadesComponent, NgIf ],
+  imports: [NavbarComponent, RouterLink, ContactanosComponent, EntrenamientosComponent, ActividadesComponent, NgIf , FooterComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

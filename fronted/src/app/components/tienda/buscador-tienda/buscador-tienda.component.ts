@@ -4,7 +4,7 @@ import { productoCarrito } from './../../../interfaces/productoCarrito';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { UsersService } from '../../../services/users.service';
 
@@ -12,7 +12,7 @@ import { UsersService } from '../../../services/users.service';
 @Component({
   selector: 'app-buscador-tienda',
   standalone: true,
-  imports: [RouterLink,NgFor],
+  imports: [RouterLink,NgFor, NgIf],
   templateUrl: './buscador-tienda.component.html',
   styleUrl: './buscador-tienda.component.css'
 })
@@ -31,6 +31,11 @@ export class BuscadorTiendaComponent {
       this.carrito = carrito;
     });
   }
+  tokenExists: boolean = false;
+  ngOnInit(): void {
+    this.tokenExists = !!localStorage.getItem('token');
+  }
+
   ngOnDestroy() {
     this.carritoSubscription.unsubscribe();
   }

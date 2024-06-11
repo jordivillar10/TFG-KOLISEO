@@ -37,12 +37,14 @@ export const getUserPurchases = async (userId: number): Promise<PurchaseWithProd
       JOIN purchaseproducts pp ON pu.id = pp.purchase_id
       JOIN products p ON pp.product_id = p.id
       WHERE pu.user_id = :userId
+      ORDER BY pu.purchase_date DESC
     `,
     {
       type: QueryTypes.SELECT,
       replacements: { userId },
     }
   );
+  console.log("Purchases from DB:", purchasesWithProducts);
 
   const purchasesMap: { [key: number]: PurchaseWithProducts } = {};
 

@@ -5,7 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { productoCarrito } from '../../../interfaces/productoCarrito';
 import { Subscription } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Envio } from '../../../interfaces/envio';
@@ -17,7 +17,7 @@ import { UsersService } from '../../../services/users.service';
 @Component({
   selector: 'app-direccion-envio',
   standalone: true,
-  imports: [NgFor, FormsModule, RouterModule],
+  imports: [NgFor, FormsModule, RouterModule, NgIf],
   templateUrl: './direccion-envio.component.html',
   styleUrl: './direccion-envio.component.css'
 })
@@ -88,8 +88,8 @@ export class DireccionEnvioComponent {
 
     // Crear el objeto de envío
     const envioCompra = {
-      cart: this.carrito, // El carrito de compras
-      user_id: this.user, // El ID del usuario
+      cart: this.carrito, // carrito de compras
+      user_id: this.user, 
       name: this.name,
       surname: this.surname,
       calle: this.calle,
@@ -100,7 +100,7 @@ export class DireccionEnvioComponent {
   };
   console.log(envioCompra);
   
-    // Llamar al servicio para iniciar la sesión de pago y guardar el envío y la compra
+    // llama al servicio para iniciar la sesión de pago y guardar el envío y la compra
     this.paymentService.createCheckoutSession(envioCompra).subscribe(
       (response) => {
           console.log('Sesión de pago creada:', response);
@@ -116,25 +116,6 @@ export class DireccionEnvioComponent {
   );
   }
 
-  // iniciarPago() {
-  //   this.paymentService.createCheckoutSession().subscribe(
-  //     (response) => {
-  //       // Manejar la respuesta del backend, por ejemplo, redireccionar al usuario a la página de pago
-  //       console.log('Sesión de pago creada:', response);
-  //       // this.addEnvio()
-  //       if (response && response.url) {
-  //         window.location.href = response.url;
-  //       }
-  //     },
-  //     (error) => {  
-  //       // Manejar errores
-  //       console.error('Error al crear sesión de pago:', error);
-  //     }
-  //   );
-  // }
-  
-  
-
   getTotalPrice(): number {
     let total = 0;
     for (let producto of this.carrito) {
@@ -146,28 +127,4 @@ export class DireccionEnvioComponent {
     return (price * quantity).toFixed(2);
   }
 
-  // addEnvio() {
-  //     // if(this.name == '' || this.surname == '' || this.calle == '' || this.numero == '' || this.ciudad == '' || this.pais == '' || this.cp == '') {
-  //     //   this.toastrSvc.error('Todos los campos son obligatorios', 'Error');
-  //     //   return;
-  //     // }
-
-  //   const envio: Envio = {
-  //     name: this.name,
-  //     surname: this.surname,
-  //     calle: this.calle,
-  //     numero: this.numero,
-  //     ciudad: this.ciudad,
-  //     pais: this.pais,
-  //     cp: this.cp
-  //   }
-  //   this.paymentService.añadirDireccion(envio).subscribe({
-  //     next: (v) => {
-  //       this.iniciarPago();
-  //     },
-  //     error: (e: HttpErrorResponse) => {
-  //       this._errorService.msjError(e);
-  //       }
-  //   })
-  // }
 }

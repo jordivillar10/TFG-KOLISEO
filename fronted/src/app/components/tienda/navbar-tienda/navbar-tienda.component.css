@@ -9,3 +9,7 @@
   width: 200px;
 }
 
+.navbar-nav {
+  cursor: pointer;
+}
+

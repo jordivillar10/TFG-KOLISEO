@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <title>Document</title>
+</head>
+<app-navbar></app-navbar>
+<body>
+    <div class="contenedor">
+        <div class="contTItulo d-flex justify-content-center align-items-center text-center ">
+            <div class="mx-5 px-5">
+                <h1>Calculadora para calcular tu IMC</h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center  mt-5">
+                <div class="col-12 col-md-10 col-lg-6">
+                    <div class="text-center">
+                        <p>El <strong>Índice de Masa Corporal (IMC)</strong> es una medida que evalúa la relación entre el peso y la estatura de una persona. Es una herramienta útil para determinar si una persona tiene un peso saludable en relación con su altura.</p>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-12 d-flex">
+                            <div class="conteneCalcu d-flex justify-content-center  mb-4 p-5">
+                                <form class="row g-3" [formGroup]="calculadoraForm" (ngSubmit)="onSubmit()">
+                                    <div class="col-md-6">
+                                          <label for="inputAddress" class="form-label">Tu peso (kg)</label>
+                                          <input
+                                            type="text"
+                                            formControlName="weight"
+                                            name="weight-input"
+                                            class="form-control"
+                                            id="weight"
+                                            placeholder="Introduce tu peso en kg"
+                                            required
+                                          />
+                                          <span *ngIf="weight?.invalid && (weight?.dirty || weight?.touched)" style="color: red;">
+                                            El campo contiene caracteres inválidos
+                                        </span>
+                                      </div>
+                                    <div class="col-md-6">
+                                      <label for="altura" class="form-label">Tu altura (cm)</label>
+                                      <input type="text" formControlName="altura" name="numero" class="form-control" id="altura" placeholder="Introduce tu altura en cm" required/>
+                                      <span *ngIf="altura?.invalid && (altura?.dirty || altura?.touched)" style="color: red;">
+                                        El campo contiene caracteres inválidos
+                                      </span>
+                                    </div>    
+                                    <button type="submit" class="btn text-light" [disabled]="calculadoraForm.invalid">Calcular</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div *ngIf="mostrarIMC" class="alert alert-success mt-3 mb-4" role="alert">
+                            Tu IMC es: {{ imc }}
+                        </div>
+                        
+                        <div class="conteneTable d-flex justify-content-center mb-4 mt-3">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="">IMC</th>
+                                        <th>Composición corporal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Por debajo de 18.5</td>
+                                        <td>Inferior a lo normal</td>
+                                    </tr>
+                                    <tr>                                       
+                                        <td>Entre 18.5 y 24.9</td>
+                                        <td>Normal</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Entre 25.0 y 29.9</td>
+                                        <td>Superior a lo normal</td>
+                                    </tr>
+                                    <tr>
+                                        <td>30.0 en adelante</td>
+                                        <td>Obesidad</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
