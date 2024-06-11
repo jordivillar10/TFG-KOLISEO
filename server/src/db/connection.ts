@@ -10,7 +10,7 @@
 import { Sequelize } from "sequelize";
 
 const sequelize = new Sequelize('koliseo', 'jordi', 'Admin123', {
-    host: '54.226.65.179',
+    host: '54.91.39.132',
     dialect: 'mysql',
 });
 

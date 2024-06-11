@@ -8,7 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // export default sequelize;
 const sequelize_1 = require("sequelize");
 const sequelize = new sequelize_1.Sequelize('koliseo', 'jordi', 'Admin123', {
-    host: '54.226.65.179',
+    host: '54.91.39.132',
     dialect: 'mysql',
 });
 exports.default = sequelize;
