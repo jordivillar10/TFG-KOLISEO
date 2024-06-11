@@ -1,4 +1,6 @@
 require("dotenv").config()
+import https from 'https';
+import fs from 'fs';
 import express, { Application, Request, Response } from 'express';
 import routesProduct from "../routes/product";
 import routesUser from "../routes/user";
@@ -33,9 +35,15 @@ class Server {
     }
 
     listen() {
-        this.app.listen(this.port, () => {
+        const privateKey = fs.readFileSync('/etc/letsencrypt/live/koliseobackend.duckdns.org/privkey.pem', 'utf8');
+        const certificate = fs.readFileSync('/etc/letsencrypt/live/koliseobackend.duckdns.org/fullchain.pem', 'utf8');
+
+        const credentials = { key: privateKey, cert: certificate};
+
+        const httpsServer = https.createServer(credentials, this.app);
+        httpsServer.listen(this.port, () => {
             console.log('Aplicación corriendo en el puerto ' + this.port);
-        })
+        });
     }
 
     routes() {

@@ -13,6 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv").config();
+const https_1 = __importDefault(require("https"));
+const fs_1 = __importDefault(require("fs"));
 const express_1 = __importDefault(require("express"));
 const product_1 = __importDefault(require("../routes/product"));
 const user_1 = __importDefault(require("../routes/user"));
@@ -42,7 +44,11 @@ class Server {
         this.dbConnect();
     }
     listen() {
-        this.app.listen(this.port, () => {
+        const privateKey = fs_1.default.readFileSync('/etc/letsencrypt/live/koliseobackend.duckdns.org/privkey.pem', 'utf8');
+        const certificate = fs_1.default.readFileSync('/etc/letsencrypt/live/koliseobackend.duckdns.org/fullchain.pem', 'utf8');
+        const credentials = { key: privateKey, cert: certificate };
+        const httpsServer = https_1.default.createServer(credentials, this.app);
+        httpsServer.listen(this.port, () => {
             console.log('Aplicación corriendo en el puerto ' + this.port);
         });
     }
