@@ -22,7 +22,7 @@ export class InicioComponent  {
     this.route.queryParams.subscribe(params => {
       const sessionId = params['session_id'];
       if (sessionId) {
-        this.http.get("https://52.87.175.172:3001/inicioTienda")
+        this.http.get("https://koliseobackend.duckdns.org:3001/inicioTienda")
           .subscribe(response => {
             console.log('Compra registrada con éxito:', response);
           }, error => {
