@@ -36,9 +36,10 @@ class Server {
 
     listen() {
         const privateKey = fs.readFileSync('/etc/letsencrypt/live/koliseobackend.duckdns.org/privkey.pem', 'utf8');
-        const certificate = fs.readFileSync('/etc/letsencrypt/live/koliseobackend.duckdns.org/fullchain.pem', 'utf8');
+        const certificate = fs.readFileSync('/etc/letsencrypt/live/koliseobackend.duckdns.org/cert.pem', 'utf8');
+        const ca = fs.readFileSync('/etc/letsencrypt/live/koliseobackend.duckdns.org/fullchain.pem', 'utf8');
 
-        const credentials = { key: privateKey, cert: certificate};
+        const credentials = { key: privateKey, cert: certificate, ca: ca };
 
         const httpsServer = https.createServer(credentials, this.app);
         httpsServer.listen(this.port, () => {
