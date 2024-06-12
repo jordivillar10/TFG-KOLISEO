@@ -100,7 +100,7 @@ export class RegistrarComponent {
   // Función para agregar campos a un ejercicio
   agregarCampos(ejercicio: Exercise) {
     if (!ejercicio.campos) {
-      ejercicio.campos = []; // Inicializar el arreglo de campos si no existe
+      ejercicio.campos = []; // Inicializar el array de campos si no existe
     }
     ;
     ejercicio.campos.push({ repeticiones: '', peso: '' }); // Agregar un nuevo campo

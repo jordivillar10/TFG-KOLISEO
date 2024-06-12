@@ -41,7 +41,7 @@ export const createSession = async(req: Request, res: Response) => {
         const encodedCiudad = encodeURIComponent(ciudad);
         const encodedPais = encodeURIComponent(pais);
         const encodedCp = encodeURIComponent(cp);
-        const successUrl = `https://44.202.158.32/compra-hecha?session_id={CHECKOUT_SESSION_ID}&user_id=${user_id}&name=${encodedName}&surname=${encodedSurname}&calle=${encodedCalle}&numero=${encodedNumero}&ciudad=${encodedCiudad}&pais=${encodedPais}&cp=${encodedCp}&totalQuantity=${totalQuantity}`;
+        const successUrl = `https://44.201.148.171/compra-hecha?session_id={CHECKOUT_SESSION_ID}&user_id=${user_id}&name=${encodedName}&surname=${encodedSurname}&calle=${encodedCalle}&numero=${encodedNumero}&ciudad=${encodedCiudad}&pais=${encodedPais}&cp=${encodedCp}&totalQuantity=${totalQuantity}`;
         // const successUrl = `http://localhost:4200/compra-hecha?session_id={CHECKOUT_SESSION_ID}&user_id=${user_id}&name=${encodedName}&surname=${encodedSurname}&calle=${encodedCalle}&numero=${encodedNumero}&ciudad=${encodedCiudad}&pais=${encodedPais}&cp=${encodedCp}&totalQuantity=${totalQuantity}`;
         // creo la sesión de Stripe
         const session = await stripe.checkout.sessions.create({
@@ -49,7 +49,7 @@ export const createSession = async(req: Request, res: Response) => {
             line_items: lineItems,
             mode: 'payment',
             success_url: successUrl,
-            cancel_url: 'https://44.202.158.32/direccion-envio',
+            cancel_url: 'https://44.201.148.171/direccion-envio',
             // cancel_url: 'http://localhost:4200/direccion-envio',
             metadata: {
                 user_id: user_id,
